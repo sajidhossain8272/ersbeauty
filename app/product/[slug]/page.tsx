@@ -160,6 +160,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             {/* Purchase Panel component (holds price, selector, order forms) */}
             <PurchasePanel 
+              id={product.id}
+              slug={product.slug}
+              imageUrl={product.imageUrl}
+              brand={product.brand}
               price={product.price}
               originalPrice={product.originalPrice}
               saveAmount={product.saveAmount}

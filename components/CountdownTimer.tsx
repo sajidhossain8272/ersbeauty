@@ -19,13 +19,22 @@ export default function CountdownTimer({ endTime }: CountdownTimerProps) {
   useEffect(() => {
     setIsMounted(true);
     
-    // Parse target date. If target is in the past or invalid, use a target 3 days from now for demo stability.
-    let targetDate = new Date(endTime).getTime();
+    // Implement a persistent 7-day relative countdown timer
+    let targetDate: number;
     const now = new Date().getTime();
+    const storedEnd = localStorage.getItem('ersbeauty_timer_end');
     
-    if (isNaN(targetDate) || targetDate <= now) {
-      // 3 days from now
-      targetDate = now + 3 * 24 * 60 * 60 * 1000 + 4 * 60 * 60 * 1000;
+    if (storedEnd) {
+      const parsedEnd = parseInt(storedEnd, 10);
+      if (!isNaN(parsedEnd) && parsedEnd > now) {
+        targetDate = parsedEnd;
+      } else {
+        targetDate = now + 7 * 24 * 60 * 60 * 1000;
+        localStorage.setItem('ersbeauty_timer_end', String(targetDate));
+      }
+    } else {
+      targetDate = now + 7 * 24 * 60 * 60 * 1000;
+      localStorage.setItem('ersbeauty_timer_end', String(targetDate));
     }
 
     const updateTimer = () => {

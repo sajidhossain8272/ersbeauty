@@ -18,10 +18,13 @@ import {
   Truck
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useCart } from '@/context/CartContext';
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openCart, cartCount } = useCart();
 
   const categories = [
     { name: 'Brands', icon: Sparkles, color: 'text-purple-500' },
@@ -62,9 +65,14 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1.5 shrink-0 select-none">
-          <span className="text-2xl font-extrabold tracking-tight text-gray-800">
-            ers<span className="text-brand-blue">beauty</span>
-          </span>
+          <Image 
+            src="/images/logo.png" 
+            alt="ersbeauty logo" 
+            width={120} 
+            height={40} 
+            className="h-10 w-auto object-contain" 
+            priority
+          />
         </Link>
 
         {/* Search Bar */}
@@ -88,18 +96,23 @@ export default function Header() {
 
         {/* Right side icons */}
         <div className="flex items-center gap-4 shrink-0">
-          <button className="p-2 text-gray-600 hover:text-brand-blue relative transition-colors duration-150">
+          <button className="p-2 text-gray-600 hover:text-brand-blue relative transition-colors duration-150 cursor-pointer">
             <Heart size={22} />
             <span className="absolute top-0.5 right-0.5 bg-brand-red text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold">
               0
             </span>
           </button>
           
-          <button className="p-2 text-gray-600 hover:text-brand-blue relative transition-colors duration-150">
+          <button 
+            onClick={openCart}
+            className="p-2 text-gray-600 hover:text-brand-blue relative transition-colors duration-150 cursor-pointer"
+          >
             <ShoppingBag size={22} />
-            <span className="absolute top-0.5 right-0.5 bg-brand-blue text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold animate-pulse">
-              1
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute top-0.5 right-0.5 bg-brand-blue text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold animate-pulse">
+                {cartCount}
+              </span>
+            )}
           </button>
 
           <button 

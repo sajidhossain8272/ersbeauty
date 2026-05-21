@@ -3,8 +3,13 @@
 import React, { useState } from 'react';
 import { ShoppingCart, CheckCircle, Flame, ShieldAlert, Award, PhoneCall, Truck, Sparkles } from 'lucide-react';
 import QuantitySelector from './QuantitySelector';
+import { useCart } from '@/context/CartContext';
 
 interface PurchasePanelProps {
+  id?: string;
+  slug?: string;
+  imageUrl?: string;
+  brand?: string;
   price: number;
   originalPrice: number;
   saveAmount: number;
@@ -15,6 +20,10 @@ interface PurchasePanelProps {
 }
 
 export default function PurchasePanel({
+  id = 'aurelia-london-collagen-anti-wrinkle-cream',
+  slug = 'dr-yunmei-collagen-anti-wrinkle-cream',
+  imageUrl = '/images/collagen-cream.jpg',
+  brand = 'Aurelia London',
   price,
   originalPrice,
   saveAmount,
@@ -23,6 +32,7 @@ export default function PurchasePanel({
   isAuthentic,
   productName
 }: PurchasePanelProps) {
+  const { addToCart, openCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
@@ -33,12 +43,24 @@ export default function PurchasePanel({
     area: 'dhaka' // 'dhaka' | 'outside'
   });
   const [cartSuccess, setCartSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [placedOrderId, setPlacedOrderId] = useState('');
 
-  const deliveryCharge = checkoutData.area === 'dhaka' ? 60 : 120;
   const totalPrice = price * quantity;
+  const isFreeDelivery = checkoutData.area === 'dhaka' && totalPrice >= 1500;
+  const deliveryCharge = isFreeDelivery ? 0 : (checkoutData.area === 'dhaka' ? 60 : 120);
   const grandTotal = totalPrice + deliveryCharge;
 
   const handleAddToCart = () => {
+    addToCart({
+      id,
+      slug,
+      name: productName,
+      price,
+      imageUrl,
+      brand
+    }, quantity);
+    
     setCartSuccess(true);
     setTimeout(() => {
       setCartSuccess(false);
@@ -46,20 +68,64 @@ export default function PurchasePanel({
   };
 
   const handleBuyNow = () => {
-    setShowCheckoutForm(true);
-    // Smooth scroll to the checkout form container
-    setTimeout(() => {
-      document.getElementById('checkout-section')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    addToCart({
+      id,
+      slug,
+      name: productName,
+      price,
+      imageUrl,
+      brand
+    }, quantity);
+    openCart();
   };
 
-  const handleSubmitOrder = (e: React.FormEvent) => {
+  const handleSubmitOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!checkoutData.name || !checkoutData.phone || !checkoutData.address) {
       alert('দয়া করে সব তথ্য পূরণ করুন।');
       return;
     }
-    setOrderPlaced(true);
+
+    const phoneRegex = /^(?:\+88|88)?(01[3-9]\d{8})$/;
+    if (!phoneRegex.test(checkoutData.phone.replace(/\s+/g, ''))) {
+      alert('দয়া করে একটি সঠিক মোবাইল নাম্বার ব্যবহার করুন (যেমন: 017XXXXXXXX)।');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customer: checkoutData,
+          items: [{
+            id,
+            name: productName,
+            price,
+            quantity,
+            brand
+          }],
+          deliveryCharge,
+          totalAmount: grandTotal,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setPlacedOrderId(data.orderId);
+        setOrderPlaced(true);
+      } else {
+        alert(data.message || 'অর্ডার করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('সার্ভারে যোগাযোগ করতে সমস্যা হচ্ছে। ইন্টারনেট চেক করে আবার চেষ্টা করুন।');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -243,10 +309,20 @@ export default function PurchasePanel({
               {/* Submit Order */}
               <button
                 type="submit"
-                className="w-full py-4 bg-brand-red hover:bg-brand-red/90 text-white rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-red/10 cursor-pointer transition-colors duration-200"
+                disabled={isSubmitting}
+                className="w-full py-4 bg-brand-red hover:bg-brand-red/90 text-white rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-red/10 cursor-pointer transition-colors duration-200 disabled:opacity-50"
               >
-                <PhoneCall size={16} />
-                <span>অর্ডার নিশ্চিত করুন (Confirm Order)</span>
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>অর্ডার প্রসেস হচ্ছে...</span>
+                  </>
+                ) : (
+                  <>
+                    <PhoneCall size={16} />
+                    <span>অর্ডার নিশ্চিত করুন (Confirm Order)</span>
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -267,6 +343,7 @@ export default function PurchasePanel({
             </p>
           </div>
           <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-xl text-left max-w-sm mx-auto text-xs text-emerald-800 space-y-1.5 font-bold">
+            {placedOrderId && <p className="text-brand-blue font-extrabold">🆔 অর্ডার আইডি: {placedOrderId}</p>}
             <p>📦 প্রোডাক্ট: {productName}</p>
             <p>🔢 পরিমাণ: {quantity} টি</p>
             <p>📍 ডেলিভারি ঠিকানা: {checkoutData.address}</p>

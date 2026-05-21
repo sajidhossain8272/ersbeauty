@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -22,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} h-full scroll-smooth`}>
       <body className="font-sans antialiased text-gray-900 bg-white min-h-screen flex flex-col">
-        {children}
+        <CartProvider>
+          {children}
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );
