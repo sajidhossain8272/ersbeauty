@@ -115,8 +115,6 @@ export default function Header() {
               <Phone size={13} className="text-gray-400 animate-pulse" />
               Support: +880 1405-892234
             </a>
-            <span className="hidden sm:inline">|</span>
-            <span className="text-brand-blue font-medium hover:underline cursor-pointer">Track Order</span>
           </div>
         </div>
       </div>
