@@ -24,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} h-full scroll-smooth`}>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="ERS Beauty" />
+      </head>
       <body className="font-sans antialiased text-gray-900 bg-white min-h-screen flex flex-col">
         <CartProvider>
           {children}
