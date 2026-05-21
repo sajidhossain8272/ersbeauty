@@ -52,6 +52,52 @@ export async function POST(request: Request) {
       console.error('Failed to write local orders file:', e);
     }
 
+    // 1.5. Send to Google Sheets Web App (if URL is set)
+    const googleSheetUrl = process.env.GOOGLE_SHEET_WEBAPP_URL;
+    if (googleSheetUrl) {
+      try {
+        const itemsOrdered = items.map((item: any) => `${item.name} (${item.brand}) [Qty: ${item.quantity}]`).join(', ');
+        
+        // Use a background call so we don't block the user's checkout response
+        fetch(googleSheetUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            orderId: newOrder.orderId,
+            createdAt: new Date().toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }), // Local BD time
+            customerName: customer.name,
+            customerPhone: customer.phone,
+            customerAddress: customer.address,
+            customerArea: customer.area === 'dhaka' ? 'Inside Dhaka' : 'Outside Dhaka',
+            itemsOrdered,
+            deliveryCharge: newOrder.deliveryCharge,
+            totalAmount: newOrder.totalAmount,
+            paymentMethod: 'Cash on Delivery',
+            status: newOrder.status,
+          }),
+        }).then(async (response) => {
+          if (response.ok) {
+            const resData = await response.json();
+            if (resData.success) {
+              console.log('Order successfully synced with Google Sheets!');
+            } else {
+              console.warn('Google Sheets Apps Script returned an error:', resData.error);
+            }
+          } else {
+            console.warn('Failed to contact Google Sheets. Status:', response.status);
+          }
+        }).catch((err) => {
+          console.error('Google Sheets async request failed:', err);
+        });
+      } catch (error) {
+        console.error('Failed to dispatch Google Sheets request:', error);
+      }
+    } else {
+      console.log('Google Sheets sync skipped: GOOGLE_SHEET_WEBAPP_URL environment variable is not defined.');
+    }
+
     // 2. Format Email Content
     const emailSubject = `🚨 New Order Received! Order ID: ${orderId} - ersbeauty`;
     const itemsHtml = items.map((item: any) => `
