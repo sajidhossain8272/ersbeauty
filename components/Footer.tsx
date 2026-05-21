@@ -16,17 +16,12 @@ export default function Footer() {
         
         {/* Column 1: About Us */}
         <div className="flex flex-col gap-4">
-          <Link href="/" className="flex items-center gap-2 group">
-            {/* Logo Icon */}
-            <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-blue-800 shadow-md shadow-brand-blue/10">
-              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2C12 2 19 8 19 13C19 16.866 15.866 20 12 20C8.13401 20 5 16.866 5 13C5 8 12 2 12 2Z" fill="currentColor" fillOpacity="0.2" />
-                <path d="M12 6c0 0-3 3-3 5.5s1.34 4.5 3 4.5 3-2 3-4.5S12 6 12 6z" fill="white" />
-              </svg>
-            </div>
-            <span className="text-2xl font-extrabold tracking-tight text-white font-sans">
-              ers<span className="text-brand-blue">beauty</span>
-            </span>
+          <Link href="/" className="flex items-center shrink-0 select-none group">
+            <img 
+              src="/logo.png" 
+              alt="ersbeauty" 
+              className="h-10 w-auto object-contain brightness-0 invert"
+            />
           </Link>
           <p className="text-sm text-gray-400 leading-relaxed">
             ঢাকার সবচেয়ে নির্ভরযোগ্য প্রিমিয়াম প্রসাধনী এবং স্কিনকেয়ার রিটেইলার। আমরা সরাসরি অরিজিনাল ব্র্যান্ডের পণ্য আমদানি করে আপনাদের কাছে পৌঁছে দিই।
