@@ -87,7 +87,7 @@ export default function ReturnPolicy() {
                 পণ্য রিটার্ন বা রিফান্ড করতে চাইলে অনুগ্রহ করে নিচে দেওয়া নাম্বারে সরাসরি কল করুন অথবা ইমেইল করুন:
               </p>
               <ul className="text-xs md:text-sm text-gray-600 space-y-1 pl-1">
-                <li>📞 কাস্টমার কেয়ার: <strong>+880 1977-889900</strong></li>
+                <li>📞 কাস্টমার কেয়ার: <a href="tel:+8801405892234" className="font-bold text-brand-blue hover:underline">+880 1405-892234</a></li>
                 <li>📧 সাপোর্ট ইমেইল: <strong>support@ersbeauty.com</strong></li>
                 <li>💬 ফেসবুক মেসেঞ্জার: <a href="#" className="text-brand-blue hover:underline font-bold">m.me/ersbeauty</a></li>
               </ul>

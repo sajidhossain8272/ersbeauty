@@ -62,10 +62,10 @@ export default function Header() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1">
-              <Phone size={13} className="text-gray-400" />
-              Support: +880 1977-889900
-            </span>
+            <a href="tel:+8801405892234" className="flex items-center gap-1 hover:text-brand-blue transition-colors">
+              <Phone size={13} className="text-gray-400 animate-pulse" />
+              Support: +880 1405-892234
+            </a>
             <span className="hidden sm:inline">|</span>
             <span className="text-brand-blue font-medium hover:underline cursor-pointer">Track Order</span>
           </div>

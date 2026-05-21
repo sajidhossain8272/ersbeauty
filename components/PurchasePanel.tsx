@@ -22,7 +22,7 @@ interface PurchasePanelProps {
 export default function PurchasePanel({
   id = 'dr-yunmei-collagen-anti-wrinkle-cream',
   slug = 'dr-yunmei-collagen-anti-wrinkle-cream',
-  imageUrl = '/images/collagen-cream.png',
+  imageUrl = '/images/product-4.jpg',
   brand = 'Dr. Yunmei',
   price,
   originalPrice,

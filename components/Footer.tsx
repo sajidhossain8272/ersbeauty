@@ -67,7 +67,7 @@ export default function Footer() {
             <Phone size={16} className="text-brand-blue mt-1 shrink-0" />
             <div>
               <p className="font-semibold text-gray-300">Hotline:</p>
-              <p>+880 1977-889900</p>
+              <a href="tel:+8801405892234" className="hover:text-white transition-colors">+880 1405-892234</a>
               <p className="text-xs text-gray-500">(10:00 AM - 10:00 PM)</p>
             </div>
           </div>
