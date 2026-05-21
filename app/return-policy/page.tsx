@@ -89,7 +89,7 @@ export default function ReturnPolicy() {
               <ul className="text-xs md:text-sm text-gray-600 space-y-1 pl-1">
                 <li>📞 কাস্টমার কেয়ার: <a href="tel:+8801405892234" className="font-bold text-brand-blue hover:underline">+880 1405-892234</a></li>
                 <li>📧 সাপোর্ট ইমেইল: <strong>support@ersbeauty.com</strong></li>
-                <li>💬 ফেসবুক মেসেঞ্জার: <a href="#" className="text-brand-blue hover:underline font-bold">m.me/ersbeauty</a></li>
+                <li>💬 ফেসবুক মেসেঞ্জার: <a href="https://m.me/61576467003503" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline font-bold">m.me/61576467003503</a></li>
               </ul>
             </div>
 

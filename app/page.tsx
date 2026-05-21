@@ -122,7 +122,7 @@ export default async function Home({
               {/* Central representation (Enlarged Image) */}
               <div className="relative w-full h-[340px] my-4 flex items-center justify-center">
                 <Image 
-                  src="/images/collagen-cream.png" 
+                  src="/images/product-4.jpg" 
                   alt="Dr. Yunmei Gold Recombinant Collagen Anti-Wrinkle Cream" 
                   fill
                   priority
