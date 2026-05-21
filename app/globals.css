@@ -2,9 +2,9 @@
 
 @theme {
   --font-sans: var(--font-outfit), system-ui, sans-serif;
-  --color-brand-blue: #004BBE;
+  --color-brand-blue: #FF2277; /* Pink/rose primary brand color from logo.png */
   --color-brand-red: #E53E3E;
-  --color-brand-navy: #0A1128;
+  --color-brand-navy: #1F0D15; /* Deep luxury dark berry/burgundy instead of navy blue */
   --color-gray-150: #EAEAEF;
 }
 

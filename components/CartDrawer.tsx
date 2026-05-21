@@ -340,7 +340,7 @@ export default function CartDrawer() {
                       <div className="grid grid-cols-2 gap-2">
                         <label className={`border rounded-lg p-2.5 flex items-center justify-center cursor-pointer transition-all ${
                           checkoutData.area === 'dhaka' 
-                            ? 'border-brand-blue bg-blue-50/50 text-brand-blue font-bold' 
+                            ? 'border-brand-blue bg-pink-50/50 text-brand-blue font-bold' 
                             : 'border-gray-200 bg-white text-gray-500'
                         }`}>
                           <input
@@ -357,7 +357,7 @@ export default function CartDrawer() {
 
                         <label className={`border rounded-lg p-2.5 flex items-center justify-center cursor-pointer transition-all ${
                           checkoutData.area === 'outside' 
-                            ? 'border-brand-blue bg-blue-50/50 text-brand-blue font-bold' 
+                            ? 'border-brand-blue bg-pink-50/50 text-brand-blue font-bold' 
                             : 'border-gray-200 bg-white text-gray-500'
                         }`}>
                           <input

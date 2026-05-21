@@ -66,7 +66,7 @@ export default async function Home({
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-gray-900">
               আপনার ত্বকের হারিয়ে যাওয়া তারুণ্য ও <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-600">ন্যাচারাল গ্লো</span> ফিরিয়ে আনুন
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-pink-500">ন্যাচারাল গ্লো</span> ফিরিয়ে আনুন
             </h1>
 
             <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto lg:mx-0 font-semibold leading-relaxed">
@@ -141,7 +141,7 @@ export default async function Home({
                   <span className="text-base font-black text-brand-blue">৳১,০৯০ <span className="text-xs text-gray-400 line-through">৳১,৬৯০</span></span>
                   <Link 
                     href="/product/dr-yunmei-collagen-anti-wrinkle-cream" 
-                    className="text-xs font-black text-brand-blue hover:underline bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100/50"
+                    className="text-xs font-black text-brand-blue hover:underline bg-pink-50 px-3 py-1.5 rounded-lg border border-pink-100/50"
                   >
                     অর্ডার করুন →
                   </Link>
@@ -156,7 +156,7 @@ export default async function Home({
       <section className="bg-white border-b border-gray-150 py-8">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors duration-150">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+            <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
               <ShieldCheck size={24} />
             </div>
             <div>
@@ -166,7 +166,7 @@ export default async function Home({
           </div>
 
           <div className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors duration-150">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+            <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
               <Truck size={24} />
             </div>
             <div>
@@ -176,7 +176,7 @@ export default async function Home({
           </div>
 
           <div className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors duration-150">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+            <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
               <RotateCcw size={24} />
             </div>
             <div>
@@ -192,7 +192,7 @@ export default async function Home({
         <div className="text-center max-w-2xl mx-auto mb-12">
           {categoryQuery || searchQuery ? (
             <div className="inline-flex flex-col items-center">
-              <span className="text-xs font-black text-brand-blue bg-blue-50 border border-blue-100 px-3 py-1 rounded-full uppercase tracking-wider">
+              <span className="text-xs font-black text-brand-blue bg-pink-50 border border-pink-100 px-3 py-1 rounded-full uppercase tracking-wider">
                 Filter Active
               </span>
               <h2 className="text-xl md:text-2xl font-black text-gray-900 mt-4">
@@ -204,7 +204,7 @@ export default async function Home({
             </div>
           ) : (
             <>
-              <span className="text-xs font-black text-brand-blue bg-blue-50 border border-blue-100 px-3 py-1 rounded-full uppercase tracking-wider">
+              <span className="text-xs font-black text-brand-blue bg-pink-50 border border-pink-100 px-3 py-1 rounded-full uppercase tracking-wider">
                 Our Products
               </span>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mt-4 leading-tight">
@@ -273,7 +273,7 @@ export default async function Home({
                   {/* Card description details */}
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[10px] font-black text-brand-blue bg-blue-50 border border-blue-100/50 px-2.5 py-0.5 rounded-md uppercase tracking-wider">
+                      <span className="text-[10px] font-black text-brand-blue bg-pink-50 border border-pink-100/50 px-2.5 py-0.5 rounded-md uppercase tracking-wider">
                         {product.brand}
                       </span>
                       <span className="text-[10px] font-bold text-gray-400">Origin: China (চীন)</span>
@@ -333,55 +333,55 @@ export default async function Home({
         )}
       </section>
 
-      {/* 4. Mini Trust badges section */}
-      <section className="bg-brand-navy text-gray-300 py-16">
+      {/* 4. Mini Trust badges section (separated from footer with a light background) */}
+      <section className="bg-gradient-to-br from-[#FFF5F6] to-[#FFF0F2] border-t border-b border-pink-100/60 text-gray-800 py-16">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-4">
-            <span className="text-xs font-black text-brand-blue bg-brand-blue/20 border border-brand-blue/40 px-3 py-1 rounded-full uppercase tracking-wider">
+            <span className="text-xs font-black text-brand-blue bg-brand-blue/10 border border-brand-blue/20 px-3 py-1 rounded-full uppercase tracking-wider">
               Secure Delivery
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">
               অর্ডার করুন কোন ঝামেলা ছাড়াই, <br />ডেলিভারি পেয়ে মূল্য পরিশোধ করুন!
             </h2>
-            <p className="text-sm text-gray-400 leading-relaxed font-medium">
+            <p className="text-sm text-gray-600 leading-relaxed font-semibold">
               আমাদের ক্যাশ অন ডেলিভারি সেবায় আপনাকে কোনো অগ্রিম পেমেন্ট করতে হবে না। ডেলিভারি ম্যান পণ্য নিয়ে আপনার ঠিকানায় যাওয়ার পর আপনি পণ্য দেখে ও সন্তুষ্ট হয়েই মূল্য পরিশোধ করতে পারবেন।
             </p>
             <ul className="space-y-2.5 pt-2">
-              <li className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-300">
-                <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0">✓</div>
+              <li className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
+                <div className="w-5 h-5 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0">✓</div>
                 <span>অগ্রিম কোনো বুকিং মানি প্রয়োজন নেই।</span>
               </li>
-              <li className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-300">
-                <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0">✓</div>
+              <li className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
+                <div className="w-5 h-5 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0">✓</div>
                 <span>ঢাকা সিটির ভেতরে ডেলিভারি মাত্র ১-২ দিনে।</span>
               </li>
-              <li className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-300">
-                <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0">✓</div>
+              <li className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
+                <div className="w-5 h-5 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0">✓</div>
                 <span>প্যাকিং খোলার পর কোনো সমস্যা থাকলে ২৪ ঘণ্টার মধ্যে রিটার্ন।</span>
               </li>
             </ul>
           </div>
-          <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-6">
-            <h3 className="font-extrabold text-white text-lg border-b border-white/10 pb-4">
+          <div className="bg-white border border-pink-100/80 shadow-md p-8 rounded-3xl space-y-6">
+            <h3 className="font-extrabold text-gray-900 text-lg border-b border-gray-100 pb-4">
               ডেলিভারি ও চার্জের সারসংক্ষেপ
             </h3>
             
             <div className="space-y-4">
               <div className="flex justify-between items-center text-sm">
-                <span className="font-medium text-gray-400">ঢাকা সিটির ভেতরে ডেলিভারি ফি:</span>
-                <span className="font-bold text-white">৳৮০ (ক্যাশ অন ডেলিভারি)</span>
+                <span className="font-semibold text-gray-500">ঢাকা সিটির ভেতরে ডেলিভারি ফি:</span>
+                <span className="font-bold text-gray-800">৳৮০ (ক্যাশ অন ডেলিভারি)</span>
               </div>
               <div className="flex justify-between items-center text-sm">
-                <span className="font-medium text-gray-400">ঢাকা সিটির বাইরে ডেলিভারি ফি:</span>
-                <span className="font-bold text-white">৳১২০ (ক্যাশ অন ডেলিভারি)</span>
+                <span className="font-semibold text-gray-500">ঢাকা সিটির বাইরে ডেলিভারি ফি:</span>
+                <span className="font-bold text-gray-800">৳১২০ (ক্যাশ অন ডেলিভারি)</span>
               </div>
-              <div className="flex justify-between items-center text-sm text-brand-blue font-bold border-t border-white/5 pt-4">
+              <div className="flex justify-between items-center text-sm text-brand-blue font-bold border-t border-gray-100 pt-4">
                 <span>ফ্রি ডেলিভারি সুযোগ:</span>
                 <span>৳১,৫০০+ টাকার অর্ডারে ফি সম্পূর্ণ ফ্রি!</span>
               </div>
             </div>
 
-            <div className="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-xl text-xs text-yellow-500 font-bold">
+            <div className="bg-amber-50 border border-amber-100 p-4 rounded-xl text-xs text-amber-800 font-bold">
               💡 বিশেষ সতর্কতা: পণ্য রিসিভ করার সময় ডেলিভারি ম্যানের সামনেই প্যাকেট খুলে প্রোডাক্টটি চেক করুন। কোনো অসঙ্গতি দেখলে সাথে সাথে ডেলিভারি ম্যানকে ফেরত দিন অথবা আমাদের হটলাইনে কল দিন।
             </div>
           </div>

@@ -271,7 +271,7 @@ export default function PurchasePanel({
                 <div className="grid grid-cols-2 gap-3">
                   <label className={`border rounded-lg p-3 flex flex-col items-center justify-center cursor-pointer transition-all ${
                     checkoutData.area === 'dhaka' 
-                      ? 'border-brand-blue bg-blue-50/50 text-brand-blue font-bold' 
+                      ? 'border-brand-blue bg-pink-50/50 text-brand-blue font-bold' 
                       : 'border-gray-300 bg-white text-gray-600'
                   }`}>
                     <input
@@ -287,7 +287,7 @@ export default function PurchasePanel({
 
                   <label className={`border rounded-lg p-3 flex flex-col items-center justify-center cursor-pointer transition-all ${
                     checkoutData.area === 'outside' 
-                      ? 'border-brand-blue bg-blue-50/50 text-brand-blue font-bold' 
+                      ? 'border-brand-blue bg-pink-50/50 text-brand-blue font-bold' 
                       : 'border-gray-300 bg-white text-gray-600'
                   }`}>
                     <input

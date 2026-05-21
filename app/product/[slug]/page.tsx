@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {/* Sidebar Trust Highlights */}
             <div className="mt-4 border border-gray-100 rounded-xl p-4 bg-gray-50/50 space-y-3.5">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+                <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
                   <ShieldCheck size={16} />
                 </div>
                 <div className="text-xs">
@@ -78,7 +78,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+                <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
                   <Truck size={16} />
                 </div>
                 <div className="text-xs">
@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+                <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
                   <RotateCcw size={16} />
                 </div>
                 <div className="text-xs">
@@ -106,7 +106,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {/* Header info */}
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-black text-brand-blue bg-blue-50 border border-blue-100/50 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                <span className="text-xs font-black text-brand-blue bg-pink-50 border border-pink-100/50 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                   {product.brand}
                 </span>
                 <span className="text-xs font-extrabold text-gray-500 bg-gray-100/70 border border-gray-200/50 px-2.5 py-0.5 rounded-full">
@@ -148,7 +148,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             />
 
             {/* Brief Bengali pitch */}
-            <div className="bg-blue-50/20 border border-blue-50 p-4 rounded-xl">
+            <div className="bg-pink-50/20 border border-pink-50 p-4 rounded-xl">
               <p className="text-sm font-semibold text-gray-700 leading-relaxed">
                 ✨ {product.description.substring(0, 150)}... <strong>পণ্যটির বিস্তারিত বিবরণ নিচে দেখুন।</strong>
               </p>

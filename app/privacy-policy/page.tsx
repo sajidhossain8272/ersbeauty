@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
           <div className="border-b border-gray-150 pb-6">
             <div className="flex items-center gap-3 text-brand-blue mb-3">
               <ShieldCheck size={28} />
-              <span className="text-xs font-black uppercase tracking-widest bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">
+              <span className="text-xs font-black uppercase tracking-widest bg-pink-50 border border-pink-100 px-3 py-1 rounded-full">
                 Security & Trust
               </span>
             </div>

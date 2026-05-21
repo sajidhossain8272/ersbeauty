@@ -127,7 +127,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <section className="bg-white border-b border-gray-150 py-8">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors duration-150">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+            <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
               <ShieldCheck size={24} />
             </div>
             <div>
@@ -137,7 +137,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
 
           <div className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors duration-150">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+            <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
               <Truck size={24} />
             </div>
             <div>
@@ -147,7 +147,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
 
           <div className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors duration-150">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-brand-blue shrink-0">
+            <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-brand-blue shrink-0">
               <RotateCcw size={24} />
             </div>
             <div>
@@ -216,7 +216,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   {/* Card description details */}
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[10px] font-black text-brand-blue bg-blue-50 border border-blue-100/50 px-2.5 py-0.5 rounded-md uppercase tracking-wider">
+                      <span className="text-[10px] font-black text-brand-blue bg-pink-50 border border-pink-100/50 px-2.5 py-0.5 rounded-md uppercase tracking-wider">
                         {product.brand}
                       </span>
                       <span className="text-[10px] font-bold text-gray-400">Origin: China (চীন)</span>

@@ -164,7 +164,7 @@ export default function Header() {
                     setShowDropdown(false);
                     setSearchQuery('');
                   }}
-                  className="flex items-center gap-3 p-3 hover:bg-blue-50/50 border-b border-gray-50 last:border-0 transition-colors cursor-pointer"
+                  className="flex items-center gap-3 p-3 hover:bg-pink-50/50 border-b border-gray-50 last:border-0 transition-colors cursor-pointer"
                 >
                   <div className="relative w-10 h-10 shrink-0 bg-gray-50 rounded overflow-hidden">
                     <img
@@ -263,7 +263,7 @@ export default function Header() {
                   setShowDropdown(false);
                   setSearchQuery('');
                 }}
-                className="flex items-center gap-2 p-2.5 hover:bg-blue-50/50 border-b border-gray-50 last:border-0 transition-colors cursor-pointer"
+                className="flex items-center gap-2 p-2.5 hover:bg-pink-50/50 border-b border-gray-50 last:border-0 transition-colors cursor-pointer"
               >
                 <div className="relative w-8 h-8 shrink-0 bg-gray-50 rounded overflow-hidden">
                   <img
