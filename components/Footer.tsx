@@ -20,7 +20,7 @@ export default function Footer() {
             <img 
               src="/logo.png" 
               alt="ersbeauty" 
-              className="h-10 w-auto object-contain brightness-0 invert"
+              className="h-14 md:h-16 w-auto object-contain bg-white p-1.5 rounded-lg"
             />
           </Link>
           <p className="text-sm text-gray-400 leading-relaxed">
