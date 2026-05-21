@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer className="bg-brand-navy text-gray-300 w-full pt-12 pb-6 mt-auto">
       {/* Tier 1: Columns */}
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8 pb-10 border-b border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 gap-8 pb-10 border-b border-gray-800">
         
         {/* Column 1: About Us */}
         <div className="flex flex-col gap-4">
@@ -57,36 +57,6 @@ export default function Footer() {
             <li><Link href="/privacy-policy" className="hover:text-white hover:underline transition-colors">Privacy Policy (গোপনীয়তা নীতি)</Link></li>
             <li><Link href="/return-policy" className="hover:text-white hover:underline transition-colors">Return Policy (রিটার্ন নীতি)</Link></li>
           </ul>
-        </div>
-
-        {/* Column 3: Customer Care (Dhaka Localized) */}
-        <div className="flex flex-col gap-3">
-          <h3 className="text-white text-base font-bold mb-4 uppercase tracking-wider">Customer Care</h3>
-          
-          <div className="flex items-start gap-2 text-sm text-gray-400">
-            <Phone size={16} className="text-brand-blue mt-1 shrink-0" />
-            <div>
-              <p className="font-semibold text-gray-300">Hotline:</p>
-              <a href="tel:+8801405892234" className="hover:text-white transition-colors">+880 1405-892234</a>
-              <p className="text-xs text-gray-500">(10:00 AM - 10:00 PM)</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-2 text-sm text-gray-400">
-            <Mail size={16} className="text-brand-blue mt-1 shrink-0" />
-            <div>
-              <p className="font-semibold text-gray-300">Support Email:</p>
-              <p>support@ersbeauty.com</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-2 text-sm text-gray-400">
-            <MapPin size={16} className="text-brand-blue mt-1 shrink-0" />
-            <div>
-              <p className="font-semibold text-gray-300">Address:</p>
-              <p>Plot 22, Road 11, Banani, Dhaka-1213, Bangladesh</p>
-            </div>
-          </div>
         </div>
 
       </div>

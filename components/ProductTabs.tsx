@@ -83,13 +83,13 @@ export default function ProductTabs({ id, description, ingredients, highlights, 
                 className="bg-gray-50 rounded-xl border border-gray-100 hover:shadow-md hover:border-brand-blue/20 transition-all duration-300 flex flex-col overflow-hidden group"
               >
                 {highlight.imageUrl ? (
-                  <div className="relative w-full h-44 overflow-hidden bg-gray-200">
+                  <div className="relative w-full h-64 overflow-hidden bg-white border-b border-gray-100 flex items-center justify-center">
                     <Image 
                       src={highlight.imageUrl}
                       alt={highlight.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 ) : (
