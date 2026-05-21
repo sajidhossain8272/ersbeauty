@@ -185,7 +185,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               return (
                 <div 
                   key={product.id}
-                  className="bg-white rounded-3xl border border-gray-150 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
+                  className="bg-white rounded-3xl border border-pink-100/70 shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
                 >
                   {/* Image showcase */}
                   <div className="relative aspect-square w-full bg-gray-50 flex items-center justify-center p-6 select-none">

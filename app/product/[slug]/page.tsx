@@ -180,7 +180,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <Link 
                   href={`/product/${p.slug}`}
                   key={p.id}
-                  className="bg-white rounded-2xl border border-gray-150 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col group"
+                  className="bg-white rounded-2xl border border-pink-100/70 shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col group"
                 >
                   <div className="relative aspect-square w-full bg-gray-50 flex items-center justify-center p-4">
                     {/* Floating Discount Tag */}
