@@ -89,7 +89,7 @@ export default function Footer() {
             <MapPin size={18} className="text-brand-blue mt-0.5 shrink-0" />
             <div>
               <p className="font-semibold text-gray-300">Address:</p>
-              <p>Plot 22, Road 11, Banani, Dhaka-1213, Bangladesh</p>
+              <p>Khilkhet Moddho Para, Ali Market, Dhaka-1229, Bangladesh</p>
             </div>
           </div>
         </div>

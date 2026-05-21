@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Search, 
   ShoppingBag, 
@@ -21,6 +21,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { useCart } from '@/context/CartContext';
+import { Product } from '@/lib/db';
 
 export default function Header() {
   const router = useRouter();
@@ -28,22 +29,70 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { openCart, cartCount } = useCart();
 
+  const [products, setProducts] = useState<Product[]>([]);
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  
+  const desktopSearchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch('/assets/data.json')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.products) {
+          setProducts(data.products);
+        }
+      })
+      .catch((err) => console.error('Error fetching search products:', err));
+  }, []);
+
+  useEffect(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) {
+      setSearchResults([]);
+      setShowDropdown(false);
+      return;
+    }
+    const filtered = products.filter(
+      (p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.brand.toLowerCase().includes(q) ||
+        (p.category && p.category.toLowerCase().includes(q))
+    );
+    setSearchResults(filtered);
+    setShowDropdown(true);
+  }, [searchQuery, products]);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const isInsideDesktop = desktopSearchRef.current?.contains(e.target as Node);
+      const isInsideMobile = mobileSearchRef.current?.contains(e.target as Node);
+      if (!isInsideDesktop && !isInsideMobile) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+      setShowDropdown(false);
     } else {
       router.push('/');
     }
   };
 
   const categories = [
-    { name: 'Brands', icon: Sparkles, color: 'text-purple-500' },
-    { name: 'Skin Care', icon: Droplet, color: 'text-brand-blue' },
-    { name: 'Hair Care', icon: Scissors, color: 'text-amber-600' },
-    { name: 'Supplement', icon: Pill, color: 'text-emerald-500' },
-    { name: 'Makeup', icon: Smile, color: 'text-rose-500' },
-    { name: 'Special Offer', icon: Flame, color: 'text-brand-red', badge: 'Hot' },
+    { name: 'Brands', slug: 'brands', icon: Sparkles, color: 'text-purple-500' },
+    { name: 'Skin Care', slug: 'skin-care', icon: Droplet, color: 'text-brand-blue' },
+    { name: 'Hair Care', slug: 'hair-care', icon: Scissors, color: 'text-amber-600' },
+    { name: 'Supplement', slug: 'supplement', icon: Pill, color: 'text-emerald-500' },
+    { name: 'Makeup', slug: 'makeup', icon: Smile, color: 'text-rose-500' },
+    { name: 'Special Offer', slug: 'special-offer', icon: Flame, color: 'text-brand-red', badge: 'Hot' },
   ];
 
   return (
@@ -90,14 +139,17 @@ export default function Header() {
         </Link>
 
         {/* Search Bar */}
-        <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-xl mx-auto relative">
-          <div className="w-full flex">
+        <div ref={desktopSearchRef} className="hidden md:flex flex-1 max-w-xl mx-auto relative z-50">
+          <form onSubmit={handleSearchSubmit} className="w-full flex">
             <div className="relative flex-1">
               <input
                 type="text"
                 placeholder="Search skincare, cosmetics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => {
+                  if (searchQuery.trim()) setShowDropdown(true);
+                }}
                 className="w-full px-4 py-2.5 pl-10 border border-gray-200 rounded-l-lg text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue bg-gray-50"
               />
               <Search className="absolute left-3.5 top-3 text-gray-400" size={18} />
@@ -105,8 +157,48 @@ export default function Header() {
             <button type="submit" className="bg-brand-blue hover:bg-brand-blue/90 text-white px-6 rounded-r-lg text-sm font-semibold transition-colors duration-200">
               Search
             </button>
-          </div>
-        </form>
+          </form>
+          
+          {/* Dropdown Container */}
+          {showDropdown && searchResults.length > 0 && (
+            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-80 overflow-y-auto z-[9999]">
+              {searchResults.map((product) => (
+                <Link
+                  key={product.id}
+                  href={`/product/${product.slug}`}
+                  onClick={() => {
+                    setShowDropdown(false);
+                    setSearchQuery('');
+                  }}
+                  className="flex items-center gap-3 p-3 hover:bg-blue-50/50 border-b border-gray-50 last:border-0 transition-colors cursor-pointer"
+                >
+                  <div className="relative w-10 h-10 shrink-0 bg-gray-50 rounded overflow-hidden">
+                    <img
+                      src={product.imageUrl}
+                      alt={product.name}
+                      className="object-contain w-full h-full p-0.5"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-black text-brand-blue uppercase tracking-wider">{product.brand}</p>
+                    <p className="text-xs font-bold text-gray-800 truncate leading-snug">{product.name}</p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <p className="text-xs font-black text-brand-blue">৳{product.price}</p>
+                    {product.price < product.originalPrice && (
+                      <p className="text-[10px] font-bold text-gray-400 line-through">৳{product.originalPrice}</p>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+          {showDropdown && searchResults.length === 0 && (
+            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl p-4 text-center text-xs font-bold text-gray-500 z-[9999]">
+              কোনো প্রোডাক্ট পাওয়া যায়নি (No Product Found)
+            </div>
+          )}
+        </div>
 
         {/* Right side icons */}
         <div className="flex items-center gap-4 shrink-0">
@@ -139,28 +231,70 @@ export default function Header() {
       </div>
 
       {/* Mobile Search Bar */}
-      <form 
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (searchQuery.trim()) {
-            router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
-          } else {
-            router.push('/');
-          }
-        }} 
-        className="md:hidden px-4 pb-3"
-      >
-        <div className="relative w-full flex">
-          <input
-            type="text"
-            placeholder="Search skincare, cosmetics..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-2 pl-9 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-brand-blue bg-gray-50"
-          />
-          <Search className="absolute left-3 top-2.5 text-gray-400" size={15} />
-        </div>
-      </form>
+      <div ref={mobileSearchRef} className="md:hidden px-4 pb-3 relative z-40">
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (searchQuery.trim()) {
+              router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+              setShowDropdown(false);
+            } else {
+              router.push('/');
+            }
+          }} 
+          className="w-full"
+        >
+          <div className="relative w-full flex">
+            <input
+              type="text"
+              placeholder="Search skincare, cosmetics..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => {
+                if (searchQuery.trim()) setShowDropdown(true);
+              }}
+              className="w-full px-4 py-2 pl-9 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-brand-blue bg-gray-50"
+            />
+            <Search className="absolute left-3 top-2.5 text-gray-400" size={15} />
+          </div>
+        </form>
+        {/* Mobile Dropdown Container */}
+        {showDropdown && searchResults.length > 0 && (
+          <div className="absolute top-full left-4 right-4 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto z-[9999]">
+            {searchResults.map((product) => (
+              <Link
+                key={product.id}
+                href={`/product/${product.slug}`}
+                onClick={() => {
+                  setShowDropdown(false);
+                  setSearchQuery('');
+                }}
+                className="flex items-center gap-2 p-2.5 hover:bg-blue-50/50 border-b border-gray-50 last:border-0 transition-colors cursor-pointer"
+              >
+                <div className="relative w-8 h-8 shrink-0 bg-gray-50 rounded overflow-hidden">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="object-contain w-full h-full p-0.5"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] font-black text-brand-blue uppercase tracking-wider">{product.brand}</p>
+                  <p className="text-[10px] font-bold text-gray-800 truncate leading-snug">{product.name}</p>
+                </div>
+                <div className="text-right shrink-0">
+                  <p className="text-[10px] font-black text-brand-blue">৳{product.price}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+        {showDropdown && searchResults.length === 0 && (
+          <div className="absolute top-full left-4 right-4 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl p-3 text-center text-[10px] font-bold text-gray-500 z-[9999]">
+            কোনো প্রোডাক্ট পাওয়া যায়নি (No Product Found)
+          </div>
+        )}
+      </div>
 
       {/* 3. Horizontal Scrollable Category Navigation */}
       <div className="w-full border-t border-gray-100 bg-white">
@@ -171,7 +305,7 @@ export default function Header() {
               return (
                 <Link
                   key={idx}
-                  href={`/?category=${encodeURIComponent(cat.name)}`}
+                  href={`/category/${cat.slug}`}
                   className="flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-gray-700 hover:text-brand-blue transition-colors duration-150 group cursor-pointer"
                 >
                   <IconComp size={16} className={`${cat.color} group-hover:scale-110 transition-transform duration-200`} />
@@ -197,7 +331,7 @@ export default function Header() {
             return (
               <Link
                 key={idx}
-                href={`/?category=${encodeURIComponent(cat.name)}`}
+                href={`/category/${cat.slug}`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-blue border-b border-gray-50 text-left w-full cursor-pointer"
               >

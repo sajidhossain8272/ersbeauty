@@ -91,7 +91,7 @@ export default function PrivacyPolicy() {
               <ul className="text-xs md:text-sm text-gray-600 space-y-1 pl-1">
                 <li>📞 হটলাইন: <a href="tel:+8801405892234" className="font-bold text-brand-blue hover:underline">+880 1405-892234</a></li>
                 <li>📧 ইমেইল: <strong>support@ersbeauty.com</strong></li>
-                <li>📍 অফিস ঠিকানা: প্লট ২২, রোড ১১, বনানী, ঢাকা-১২১৩, বাংলাদেশ।</li>
+                <li>📍 অফিস ঠিকানা: খিলক্ষেত মধ্যপাড়া আলী মার্কেট, ঢাকা-১২২৯, বাংলাদেশ।</li>
               </ul>
             </div>
 
