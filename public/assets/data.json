@@ -1,45 +1,45 @@
 {
   "products": [
     {
-      "id": "aurelia-london-collagen-anti-wrinkle-cream",
+      "id": "dr-yunmei-collagen-anti-wrinkle-cream",
       "slug": "dr-yunmei-collagen-anti-wrinkle-cream",
-      "name": "Aurelia London Golden Recombinant Collagen Anti-Wrinkle Cream (আউরেলিয়া গোল্ডেন রিকম্বিন্যান্ট কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম)",
-      "brand": "Aurelia London",
-      "description": "বয়সের ছাপ ও বলিরেখা নিয়ে আর চিন্তা নয়! আপনার ত্বকের হারিয়ে যাওয়া তারুণ্য আর আকর্ষণীয় উজ্জ্বলতা ফিরিয়ে আনতে ব্যবহার করুন 'আউরেলিয়া গোল্ডেন কোলাজেন ক্রিম'। এটি ত্বকের গভীরে গিয়ে কোলাজেনের ঘাটতি পূরণ করে এবং বলিরেখা দূর করে ত্বককে টানটান ও নরম রাখে। এতে থাকা খাঁটি সোনার কণা ত্বককে ভেতর থেকে ফর্সা ও গ্লোয়িং করে তোলে, যা আপনাকে দেবে একটি নিখুঁত গ্লাস স্কিন লুক। এটি গরমের দিনেও ব্যবহারের জন্য অত্যন্ত উপযোগী কারণ এটি ত্বকে কোনো চিটচিটে ভাব তৈরি করে না।",
+      "name": "Dr. Yunmei Gold Recombinant Collagen Anti-Wrinkle Cream (ডক্টর ইউনমেই গোল্ড রিকম্বিন্যান্ট কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম)",
+      "brand": "Dr. Yunmei",
+      "category": "Skin Care",
+      "description": "বয়সের ছাপ ও বলিরেখা নিয়ে আর চিন্তা নয়! আপনার ত্বকের হারিয়ে যাওয়া তারুণ্য আর আকর্ষণীয় উজ্জ্বলতা ফিরিয়ে আনতে ব্যবহার করুন 'ডক্টর ইউনমেই গোল্ড রিকম্বিন্যান্ট কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম' (৫০ গ্রাম)। এটি ত্বকের গভীরে গিয়ে কোলাজেনের ঘাটতি পূরণ করে এবং বলিরেখা দূর করে ত্বককে টানটান ও নরম রাখে। এতে থাকা খাঁটি সোনার কণা ত্বককে ভেতর থেকে ফর্সা ও গ্লোয়িং করে তোলে, যা আপনাকে দেবে একটি নিখুঁত গ্লাস স্কিন লুক। এই প্রোডাক্টটির উৎপত্তিস্থল চীন (Origin: China)। এটি গরমের দিনেও ব্যবহারের জন্য অত্যন্ত উপযোগী কারণ এটি ত্বকে কোনো চিটচিটে ভাব তৈরি করে না।",
       "price": 1090,
       "originalPrice": 1690,
       "discountPercent": 36,
       "saveAmount": 600,
-      "imageUrl": "/images/product-1.jpg",
+      "imageUrl": "/images/collagen-cream.png",
       "images": [
-        "/images/product-1.jpg",
-        "/images/product-2.jpg",
-        "/images/product-3.jpg",
-        "/images/product-4.jpg",
-        "/images/product-5.jpg"
+        "/images/collagen-cream.png"
       ],
       "stockStatus": "Very few units left at this price",
       "isAuthentic": true,
       "flashSaleEnds": "2026-05-30T23:59:59.000Z",
       "ingredients": [
-        "Recombinant Collagen (রিকম্বিন্যান্ট কোলাজেন - ত্বক টানটান করে)",
-        "Pure Gold Particles (খাঁটি সোনার কণা - ত্বক ফর্সা ও উজ্জ্বল করে)",
-        "Glycerol (গ্লিসারিন - ত্বক নরম ও হাইড্রেটেড রাখে)",
-        "Xanthan gum (জ্যানথান গাম - ত্বকের আর্দ্রতা ধরে রাখে)",
-        "Mineral oil (মিনারেল অয়েল - ত্বক মসৃণ করে)"
+        "Recombinant Collagen (রিকম্বিন্যান্ট কোলাজেন)",
+        "Gold (24K Gold Particles) (খাঁটি সোনার কণা)",
+        "Glycerol (গ্লিসারিন)",
+        "Xanthan Gum (জ্যানথান গাম)",
+        "Mineral Oil (মিনারেল অয়েল)"
       ],
       "highlights": [
         {
           "title": "বলিরেখা ও বয়সের ছাপ দূর করে (Anti-Wrinkle)",
-          "description": "ত্বকের কুঁচকে যাওয়া ভাব ও চোখের নিচের ফাইন লাইনস দূর করে স্কিনকে করে তোলে প্লাম্পি ও তারুণ্যদীপ্ত।"
+          "description": "ত্বকের কুঁচকে যাওয়া ভাব ও চোখের নিচের ফাইন লাইনস দূর করে স্কিনকে করে তোলে প্লাম্পি ও তারুণ্যদীপ্ত।",
+          "imageUrl": "/images/benefit-1.png"
         },
         {
           "title": "সোনার কণার পুষ্টি ও গ্লো (Brightening Glow)",
-          "description": "খাঁটি গোল্ড পার্টিক্যালস স্কিন ব্যারিয়ার মেরামত করে এবং ত্বককে ভেতর থেকে ফর্সা ও আকর্ষণীয়ভাবে উজ্জ্বল করে।"
+          "description": "খাঁটি গোল্ড পার্টিক্যালস স্কিন ব্যারিয়ার মেরামত করে এবং ত্বককে ভেতর থেকে ফর্সা ও আকর্ষণীয়ভাবে উজ্জ্বল করে।",
+          "imageUrl": "/images/benefit-2.png"
         },
         {
           "title": "গভীর আর্দ্রতা ও টানটান ভাব (Deep Moisturizing)",
-          "description": "গ্লিসারিন ও জ্যানথান গাম ত্বকের শুষ্কতা দূর করে সারাদিন ত্বককে নরম, মসৃণ ও হাইড্রেটেড রাখে।"
+          "description": "গ্লিসারিন ও জ্যানথান গাম ত্বকের শুষ্কতা দূর করে সারাদিন ত্বককে নরম, মসৃণ ও হাইড্রেটেড রাখে।",
+          "imageUrl": "/images/benefit-3.png"
         }
       ],
       "reviews": [
@@ -76,16 +76,17 @@
     {
       "id": "ersbeauty-collagen-eye-cream",
       "slug": "ersbeauty-collagen-eye-cream",
-      "name": "Aurelia London Golden Recombinant Collagen Eye Cream (আউরেলিয়া গোল্ডেন রিকম্বিন্যান্ট কোলাজেন আই ক্রিম)",
-      "brand": "Aurelia London",
+      "name": "Dr. Yunmei Golden Recombinant Collagen Eye Cream (ডক্টর ইউনমেই গোল্ডেন রিকম্বিন্যান্ট কোলাজেন আই ক্রিম)",
+      "brand": "Dr. Yunmei",
+      "category": "Skin Care",
       "description": "চোখের চারপাশের কালো দাগ বা ডার্ক সার্কেল ও সূক্ষ্ম বলিরেখা দূর করতে অত্যন্ত কার্যকরী এই আই ক্রিম। রিকম্বিন্যান্ট কোলাজেন ও খাঁটি সোনার কণা সমৃদ্ধ এই ফর্মুলা চোখের চারপাশের ত্বককে টানটান ও উজ্জ্বল রাখে। এটি একটি প্রিমিয়াম ফর্মুলা যা দ্রুত শোষিত হয়।",
       "price": 790,
       "originalPrice": 1250,
       "discountPercent": 37,
       "saveAmount": 460,
-      "imageUrl": "/images/product-2.jpg",
+      "imageUrl": "/images/product-eye-cream.png",
       "images": [
-        "/images/product-2.jpg"
+        "/images/product-eye-cream.png"
       ],
       "stockStatus": "স্টক শেষ (Out of Stock)",
       "isAuthentic": true,
@@ -98,7 +99,7 @@
       "highlights": [
         {
           "title": "ডার্ক সার্কেল হ্রাস",
-          "description": "চোখের নিচের কালো দাগ দূর করে এবং ক্লান্ত ভাব দূর করতে সাহায্য করে।"
+          "description": "চোখের নিচের কালো দাগ দূর করে এবং ক্লান্ত ভাব দূর করতে সাহায্য করে。"
         }
       ],
       "reviews": []
@@ -106,16 +107,17 @@
     {
       "id": "ersbeauty-collagen-brightening-essence",
       "slug": "ersbeauty-collagen-brightening-essence",
-      "name": "Aurelia London Recombinant Collagen Brightening Essence (আউরেলিয়া রিকম্বিন্যান্ট কোলাজেন ব্রাইটেনিং এসেন্স)",
-      "brand": "Aurelia London",
+      "name": "Dr. Yunmei Recombinant Collagen Brightening Essence (ডক্টর ইউনমেই রিকম্বিন্যান্ট কোলাজেন ব্রাইটেনিং এসেন্স)",
+      "brand": "Dr. Yunmei",
+      "category": "Skin Care",
       "description": "আপনার ত্বককে ভেতর থেকে ফর্সা, কোমল ও আকর্ষণীয় করতে ব্যবহার করুন কোলাজেন ব্রাইটেনিং এসেন্স। এটি ত্বকের গভীরে পুষ্টি জুগিয়ে রুক্ষতা দূর করে এবং ত্বকের কালো দাগ হালকা করে গ্লাস স্কিন গ্লো এনে দেয়।",
       "price": 1290,
       "originalPrice": 1990,
       "discountPercent": 35,
       "saveAmount": 700,
-      "imageUrl": "/images/product-3.jpg",
+      "imageUrl": "/images/product-essence.png",
       "images": [
-        "/images/product-3.jpg"
+        "/images/product-essence.png"
       ],
       "stockStatus": "স্টক শেষ (Out of Stock)",
       "isAuthentic": true,

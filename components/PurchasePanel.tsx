@@ -20,10 +20,10 @@ interface PurchasePanelProps {
 }
 
 export default function PurchasePanel({
-  id = 'aurelia-london-collagen-anti-wrinkle-cream',
+  id = 'dr-yunmei-collagen-anti-wrinkle-cream',
   slug = 'dr-yunmei-collagen-anti-wrinkle-cream',
-  imageUrl = '/images/collagen-cream.jpg',
-  brand = 'Aurelia London',
+  imageUrl = '/images/collagen-cream.png',
+  brand = 'Dr. Yunmei',
   price,
   originalPrice,
   saveAmount,

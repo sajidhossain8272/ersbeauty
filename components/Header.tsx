@@ -18,13 +18,24 @@ import {
   Truck
 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { useCart } from '@/context/CartContext';
 
 export default function Header() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { openCart, cartCount } = useCart();
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      router.push('/');
+    }
+  };
 
   const categories = [
     { name: 'Brands', icon: Sparkles, color: 'text-purple-500' },
@@ -79,7 +90,7 @@ export default function Header() {
         </Link>
 
         {/* Search Bar */}
-        <div className="hidden md:flex flex-1 max-w-xl mx-auto relative">
+        <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-xl mx-auto relative">
           <div className="w-full flex">
             <div className="relative flex-1">
               <input
@@ -91,11 +102,11 @@ export default function Header() {
               />
               <Search className="absolute left-3.5 top-3 text-gray-400" size={18} />
             </div>
-            <button className="bg-brand-blue hover:bg-brand-blue/90 text-white px-6 rounded-r-lg text-sm font-semibold transition-colors duration-200">
+            <button type="submit" className="bg-brand-blue hover:bg-brand-blue/90 text-white px-6 rounded-r-lg text-sm font-semibold transition-colors duration-200">
               Search
             </button>
           </div>
-        </div>
+        </form>
 
         {/* Right side icons */}
         <div className="flex items-center gap-4 shrink-0">
@@ -128,7 +139,17 @@ export default function Header() {
       </div>
 
       {/* Mobile Search Bar */}
-      <div className="md:hidden px-4 pb-3">
+      <form 
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (searchQuery.trim()) {
+            router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+          } else {
+            router.push('/');
+          }
+        }} 
+        className="md:hidden px-4 pb-3"
+      >
         <div className="relative w-full flex">
           <input
             type="text"
@@ -139,7 +160,7 @@ export default function Header() {
           />
           <Search className="absolute left-3 top-2.5 text-gray-400" size={15} />
         </div>
-      </div>
+      </form>
 
       {/* 3. Horizontal Scrollable Category Navigation */}
       <div className="w-full border-t border-gray-100 bg-white">
@@ -148,8 +169,9 @@ export default function Header() {
             {categories.map((cat, idx) => {
               const IconComp = cat.icon;
               return (
-                <button
+                <Link
                   key={idx}
+                  href={`/?category=${encodeURIComponent(cat.name)}`}
                   className="flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-gray-700 hover:text-brand-blue transition-colors duration-150 group cursor-pointer"
                 >
                   <IconComp size={16} className={`${cat.color} group-hover:scale-110 transition-transform duration-200`} />
@@ -159,7 +181,7 @@ export default function Header() {
                       {cat.badge}
                     </span>
                   )}
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -173,10 +195,11 @@ export default function Header() {
           {categories.map((cat, idx) => {
             const IconComp = cat.icon;
             return (
-              <button
+              <Link
                 key={idx}
+                href={`/?category=${encodeURIComponent(cat.name)}`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-blue border-b border-gray-50 text-left w-full"
+                className="flex items-center gap-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-blue border-b border-gray-50 text-left w-full cursor-pointer"
               >
                 <IconComp size={18} className={cat.color} />
                 <span>{cat.name}</span>
@@ -185,7 +208,7 @@ export default function Header() {
                     {cat.badge}
                   </span>
                 )}
-              </button>
+              </Link>
             );
           })}
         </div>

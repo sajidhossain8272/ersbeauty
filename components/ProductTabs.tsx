@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 import { FileText, ClipboardList, Truck, Sparkles, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
 
 interface TabHighlight {
   title: string;
   description: string;
+  imageUrl?: string;
 }
 
 interface ProductTabsProps {
@@ -105,14 +107,30 @@ export default function ProductTabs({ id, description, ingredients, highlights, 
               {highlights.map((highlight, idx) => (
                 <div 
                   key={idx} 
-                  className="bg-gray-50 p-5 rounded-xl border border-gray-100 hover:shadow-md hover:border-brand-blue/20 transition-all duration-300 flex flex-col gap-3 group"
+                  className="bg-gray-50 rounded-xl border border-gray-100 hover:shadow-md hover:border-brand-blue/20 transition-all duration-300 flex flex-col overflow-hidden group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
-                    <Sparkles size={18} />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-gray-900 text-base mb-1.5">{highlight.title}</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed font-medium">{highlight.description}</p>
+                  {highlight.imageUrl ? (
+                    <div className="relative w-full h-44 overflow-hidden bg-gray-200">
+                      <Image 
+                        src={highlight.imageUrl}
+                        alt={highlight.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ) : (
+                    <div className="p-5 pb-0">
+                      <div className="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                        <Sparkles size={18} />
+                      </div>
+                    </div>
+                  )}
+                  <div className="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h4 className="font-extrabold text-gray-900 text-base mb-1.5">{highlight.title}</h4>
+                      <p className="text-xs text-gray-600 leading-relaxed font-medium">{highlight.description}</p>
+                    </div>
                   </div>
                 </div>
               ))}

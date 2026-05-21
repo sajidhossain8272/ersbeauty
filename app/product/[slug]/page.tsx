@@ -109,6 +109,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <span className="text-xs font-black text-brand-blue bg-blue-50 border border-blue-100/50 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                   {product.brand}
                 </span>
+                <span className="text-xs font-extrabold text-gray-500 bg-gray-100/70 border border-gray-200/50 px-2.5 py-0.5 rounded-full">
+                  {product.slug === 'dr-yunmei-collagen-anti-wrinkle-cream' ? '50g' : product.slug === 'ersbeauty-collagen-eye-cream' ? '30g' : '40ml'}
+                </span>
                 
                 {/* Micro stars summary */}
                 <div className="flex items-center gap-1 text-xs font-bold text-gray-500">

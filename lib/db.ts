@@ -4,6 +4,7 @@ import path from 'path';
 export interface ProductHighlight {
   title: string;
   description: string;
+  imageUrl?: string;
 }
 
 export interface ProductReview {
@@ -32,6 +33,7 @@ export interface Product {
   ingredients: string[];
   highlights: ProductHighlight[];
   reviews: ProductReview[];
+  category?: string;
 }
 
 export function getProductsData(): Product[] {
