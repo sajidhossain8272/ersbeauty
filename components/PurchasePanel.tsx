@@ -47,8 +47,9 @@ export default function PurchasePanel({
   const [placedOrderId, setPlacedOrderId] = useState('');
 
   const totalPrice = price * quantity;
+  const isOutOfStock = stockStatus.toLowerCase().includes('out of stock') || stockStatus.includes('স্টক শেষ');
   const isFreeDelivery = checkoutData.area === 'dhaka' && totalPrice >= 1500;
-  const deliveryCharge = isFreeDelivery ? 0 : (checkoutData.area === 'dhaka' ? 60 : 120);
+  const deliveryCharge = isFreeDelivery ? 0 : (checkoutData.area === 'dhaka' ? 80 : 120);
   const grandTotal = totalPrice + deliveryCharge;
 
   const handleAddToCart = () => {
@@ -139,7 +140,7 @@ export default function PurchasePanel({
         {isAuthentic && (
           <div className="flex items-center gap-1.5 text-emerald-600 text-xs font-extrabold">
             <Award size={14} className="fill-emerald-100" />
-            <span>🛡️ Authenticity guaranteed (কোরিয়ান অরিজিনাল প্রোডাক্ট)</span>
+            <span>🛡️ Authenticity guaranteed (১০০% অরিজিনাল প্রোডাক্ট)</span>
           </div>
         )}
       </div>
@@ -170,29 +171,41 @@ export default function PurchasePanel({
       </div>
 
       {/* 3. Quantity Selector */}
-      <QuantitySelector quantity={quantity} onChange={setQuantity} />
+      {!isOutOfStock && <QuantitySelector quantity={quantity} onChange={setQuantity} />}
 
       {/* 4. Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 pt-2">
-        {/* Add to Cart Button */}
-        <button
-          type="button"
-          onClick={handleAddToCart}
-          className="flex-1 py-4 bg-brand-blue hover:bg-brand-blue/90 text-white rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-blue/15 hover:shadow-brand-blue/25 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer select-none"
-        >
-          <ShoppingCart size={18} />
-          <span>Add to Cart</span>
-        </button>
+      <div className="flex flex-col gap-3 pt-2">
+        {isOutOfStock ? (
+          <button
+            type="button"
+            disabled
+            className="w-full py-4 bg-gray-200 text-gray-500 rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 cursor-not-allowed select-none"
+          >
+            <span>স্টক শেষ (Out of Stock)</span>
+          </button>
+        ) : (
+          <div className="flex flex-col sm:flex-row gap-3 w-full">
+            {/* Add to Cart Button */}
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              className="flex-1 py-4 bg-brand-blue hover:bg-brand-blue/90 text-white rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-blue/15 hover:shadow-brand-blue/25 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer select-none"
+            >
+              <ShoppingCart size={18} />
+              <span>Add to Cart</span>
+            </button>
 
-        {/* Buy Now Button */}
-        <button
-          type="button"
-          onClick={handleBuyNow}
-          className="flex-1 py-4 bg-brand-red hover:bg-brand-red/90 text-white rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-red/15 hover:shadow-brand-red/25 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer select-none"
-        >
-          <Sparkles size={18} className="fill-white" />
-          <span>Buy Now (অর্ডার করুন)</span>
-        </button>
+            {/* Buy Now Button */}
+            <button
+              type="button"
+              onClick={handleBuyNow}
+              className="flex-1 py-4 bg-brand-red hover:bg-brand-red/90 text-white rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-red/15 hover:shadow-brand-red/25 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer select-none"
+            >
+              <Sparkles size={18} className="fill-white" />
+              <span>Buy Now (অর্ডার করুন)</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Add to Cart Toast Success */}
@@ -269,7 +282,7 @@ export default function PurchasePanel({
                       onChange={() => setCheckoutData({ ...checkoutData, area: 'dhaka' })}
                       className="sr-only"
                     />
-                    <span className="text-xs sm:text-sm">ঢাকা সিটি (৳৬০)</span>
+                    <span className="text-xs sm:text-sm">ঢাকা সিটি (৳৮০)</span>
                   </label>
 
                   <label className={`border rounded-lg p-3 flex flex-col items-center justify-center cursor-pointer transition-all ${

@@ -12,17 +12,24 @@ export default function Footer() {
   return (
     <footer className="bg-brand-navy text-gray-300 w-full pt-12 pb-6 mt-auto">
       {/* Tier 1: Columns */}
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8 pb-10 border-b border-gray-800">
         
         {/* Column 1: About Us */}
         <div className="flex flex-col gap-4">
-          <Link href="/" className="flex items-center gap-1.5">
-            <span className="text-2xl font-extrabold tracking-tight text-white">
+          <Link href="/" className="flex items-center gap-2 group">
+            {/* Logo Icon */}
+            <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-blue-800 shadow-md shadow-brand-blue/10">
+              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2C12 2 19 8 19 13C19 16.866 15.866 20 12 20C8.13401 20 5 16.866 5 13C5 8 12 2 12 2Z" fill="currentColor" fillOpacity="0.2" />
+                <path d="M12 6c0 0-3 3-3 5.5s1.34 4.5 3 4.5 3-2 3-4.5S12 6 12 6z" fill="white" />
+              </svg>
+            </div>
+            <span className="text-2xl font-extrabold tracking-tight text-white font-sans">
               ers<span className="text-brand-blue">beauty</span>
             </span>
           </Link>
           <p className="text-sm text-gray-400 leading-relaxed">
-            ঢাকার সবচেয়ে নির্ভরযোগ্য কোরিয়ান প্রসাধনী এবং স্কিনকেয়ার রিটেইলার। আমরা সরাসরি দক্ষিণ কোরিয়া থেকে আসল পণ্য আমদানি করে আপনাদের কাছে পৌঁছে দিই।
+            ঢাকার সবচেয়ে নির্ভরযোগ্য প্রিমিয়াম প্রসাধনী এবং স্কিনকেয়ার রিটেইলার। আমরা সরাসরি অরিজিনাল ব্র্যান্ডের পণ্য আমদানি করে আপনাদের কাছে পৌঁছে দিই।
           </p>
           <div className="flex items-center gap-3 mt-2 text-gray-400">
             <a href="#" className="hover:text-brand-blue transition-colors duration-150" aria-label="Facebook">
@@ -43,31 +50,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 2: Quick Links */}
+        {/* Column 2: Customer Policies */}
         <div>
-          <h3 className="text-white text-base font-bold mb-4 uppercase tracking-wider">Quick Links</h3>
+          <h3 className="text-white text-base font-bold mb-4 uppercase tracking-wider">Customer Policies</h3>
           <ul className="space-y-2.5 text-sm text-gray-400">
-            <li><Link href="/" className="hover:text-white hover:underline transition-colors">Shop Skincare</Link></li>
-            <li><Link href="/" className="hover:text-white hover:underline transition-colors">New Arrivals</Link></li>
-            <li><Link href="/" className="hover:text-white hover:underline transition-colors">All Brands</Link></li>
-            <li><Link href="/" className="hover:text-white hover:underline transition-colors">Special Offers</Link></li>
-            <li><Link href="/" className="hover:text-white hover:underline transition-colors">Skincare Blog</Link></li>
+            <li><Link href="/privacy-policy" className="hover:text-white hover:underline transition-colors">Privacy Policy (গোপনীয়তা নীতি)</Link></li>
+            <li><Link href="/return-policy" className="hover:text-white hover:underline transition-colors">Return Policy (রিটার্ন নীতি)</Link></li>
           </ul>
         </div>
 
-        {/* Column 3: My Account */}
-        <div>
-          <h3 className="text-white text-base font-bold mb-4 uppercase tracking-wider">My Account</h3>
-          <ul className="space-y-2.5 text-sm text-gray-400">
-            <li><span className="hover:text-white hover:underline transition-colors cursor-pointer">Order Status</span></li>
-            <li><span className="hover:text-white hover:underline transition-colors cursor-pointer">Purchase History</span></li>
-            <li><span className="hover:text-white hover:underline transition-colors cursor-pointer">My Wishlist</span></li>
-            <li><span className="hover:text-white hover:underline transition-colors cursor-pointer">Shopping Cart</span></li>
-            <li><span className="hover:text-white hover:underline transition-colors cursor-pointer">Returns & Refunds</span></li>
-          </ul>
-        </div>
-
-        {/* Column 4: Customer Care (Dhaka Localized) */}
+        {/* Column 3: Customer Care (Dhaka Localized) */}
         <div className="flex flex-col gap-3">
           <h3 className="text-white text-base font-bold mb-4 uppercase tracking-wider">Customer Care</h3>
           

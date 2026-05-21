@@ -89,7 +89,7 @@ export async function POST(request: Request) {
           </tr>
           <tr>
             <td style="padding: 6px 0; font-weight: bold; color: #555;">Delivery Zone:</td>
-            <td style="padding: 6px 0;">${customer.area === 'dhaka' ? 'Inside Dhaka (৳60)' : 'Outside Dhaka (৳120)'}</td>
+            <td style="padding: 6px 0;">${customer.area === 'dhaka' ? 'Inside Dhaka (৳80)' : 'Outside Dhaka (৳120)'}</td>
           </tr>
         </table>
 

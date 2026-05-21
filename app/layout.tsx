@@ -11,9 +11,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "ersbeauty | Authentic Korean Skincare & Cosmetics",
-  description: "Explore and shop premium, 100% authentic Korean beauty and skincare products at ersbeauty. Authentic products guaranteed.",
-  keywords: "ersbeauty, skincare, cosmetics, korean skincare, beauty bangladesh, collagen cream, anti-wrinkle cream",
+  title: "ersbeauty | Premium Authentic Skincare & Cosmetics",
+  description: "Explore and shop premium, 100% authentic international beauty and skincare products at ersbeauty. Genuine products guaranteed.",
+  keywords: "ersbeauty, skincare, cosmetics, beauty bangladesh, collagen cream, anti-wrinkle cream, recombinant collagen",
 };
 
 export default function RootLayout({

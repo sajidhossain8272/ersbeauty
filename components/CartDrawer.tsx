@@ -29,9 +29,9 @@ export default function CartDrawer() {
 
   if (!isCartOpen) return null;
 
-  // Calculate Shipping fee: Free in Dhaka for orders > 1500, else 60 inside Dhaka, 120 outside
+  // Calculate Shipping fee: Free in Dhaka for orders >= 1500, else 80 inside Dhaka, 120 outside
   const isFreeDelivery = checkoutData.area === 'dhaka' && cartTotal >= 1500;
-  const deliveryCharge = isFreeDelivery ? 0 : (checkoutData.area === 'dhaka' ? 60 : 120);
+  const deliveryCharge = isFreeDelivery ? 0 : (checkoutData.area === 'dhaka' ? 80 : 120);
   const grandTotal = cartTotal + deliveryCharge;
 
   const handleSubmitOrder = async (e: React.FormEvent) => {
@@ -98,7 +98,8 @@ export default function CartDrawer() {
     <div className="fixed inset-0 z-50 overflow-hidden" aria-modal="true" role="dialog">
       {/* Backdrop overlay */}
       <div 
-        className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" 
+        className="absolute inset-0 transition-opacity" 
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
         onClick={() => !isSubmitting && closeCart()}
       />
 

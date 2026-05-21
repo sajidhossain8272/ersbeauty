@@ -9,6 +9,7 @@ interface TabHighlight {
 }
 
 interface ProductTabsProps {
+  id?: string;
   description: string;
   ingredients: string[];
   highlights: TabHighlight[];
@@ -16,7 +17,7 @@ interface ProductTabsProps {
   name: string;
 }
 
-export default function ProductTabs({ description, ingredients, highlights, brand, name }: ProductTabsProps) {
+export default function ProductTabs({ id, description, ingredients, highlights, brand, name }: ProductTabsProps) {
   const [activeTab, setActiveTab] = useState<'description' | 'specifications' | 'shipping'>('description');
 
   const tabs = [
@@ -24,6 +25,43 @@ export default function ProductTabs({ description, ingredients, highlights, bran
     { id: 'specifications', label: 'Specifications', icon: ClipboardList },
     { id: 'shipping', label: 'Shipping & Return', icon: Truck },
   ] as const;
+
+  // Dynamic Bengali marketing text based on product ID
+  const isEyeCream = id === 'ersbeauty-collagen-eye-cream';
+  const isEssence = id === 'ersbeauty-collagen-brightening-essence';
+
+  const marketingTitle = isEyeCream 
+    ? 'কেন এই কোলাজেন আই ক্রিমটি বেছে নেবেন?' 
+    : isEssence 
+      ? 'কেন এই কোলাজেন ব্রাইটেনিং এসেন্সটি বেছে নেবেন?' 
+      : 'কেন এই কোলাজেন ক্রিমটি বেছে নেবেন?';
+
+  const marketingBullets = isEyeCream
+    ? [
+        "চোখের চারপাশের কালো দাগ বা ডার্ক সার্কেল দ্রুত দূর করে।",
+        "চোখের নিচের চামড়া কুঁচকে যাওয়া রোধ করে ত্বক টানটান রাখে।",
+        "খাঁটি সোনার কণা চোখের চারপাশের ত্বক সতেজ ও উজ্জ্বল রাখে।",
+        "দ্রুত শোষিত হয় এবং চোখের নিচের ক্লান্ত ভাব দূর করতে সাহায্য করে।"
+      ]
+    : isEssence
+      ? [
+          "ত্বকের গভীরে পুষ্টি জুগিয়ে রুক্ষতা দূর করে কোমল করে তোলে।",
+          "ত্বকের কালো দাগ হালকা করে আকর্ষণীয় গ্লাস স্কিন গ্লো এনে দেয়।",
+          "কোলাজেন পেপটাইড ত্বকের ইলাস্টিসিটি বৃদ্ধি করে তারুণ্য ধরে রাখে।",
+          "নিয়াসিনামাইড ও খাঁটি সোনার কণা ত্বককে ভেতর থেকে ফর্সা ও ব্রাইট করে।"
+        ]
+      : [
+          "ত্বকের বলিরেখা এবং ফাইন লাইনস দ্রুত দূর করে স্কিন টানটান করে।",
+          "খাঁটি সোনার কণা (Gold Particles) ত্বককে দেয় তাৎক্ষণিক ন্যাচারাল গ্লো।",
+          "রিকম্বিন্যান্ট কোলাজেন ত্বকের ইলাস্টিসিটি বৃদ্ধি করে চামড়া ঝুলে যাওয়া রোধ করে।",
+          "গরমের জন্য খুবই লাইটওয়েট এবং নন-গ্রীসি ফর্মুলা, যা চিটচিটে ভাব দেয় না।"
+        ];
+
+  const usageInstructions = isEyeCream
+    ? "প্রতিদিন রাতে মুখ ভালো করে ধুয়ে নেওয়ার পর পর্যাপ্ত পরিমাণে আই ক্রিম নিয়ে চোখের চারপাশে আলতো করে ড্যাব করে মেখে নিন। জোরে ঘষবেন না। নিয়মিত ব্যবহারে ভালো ফল পাওয়া যাবে।"
+    : isEssence
+      ? "মুখ ধুয়ে টোনার ব্যবহারের পর ২-৩ ফোঁটা এসেন্স নিয়ে পুরো মুখে হালকা হাতে মেখে নিন এবং শোষিত হতে দিন। এরপর আপনার পছন্দের ময়েশ্চারাইজার ব্যবহার করুন। সকালে ও রাতে ব্যবহার করতে পারেন।"
+      : "প্রতিদিন সকালে ও রাতে ফেসওয়াশ বা ক্লিনজার দিয়ে মুখ ভালো করে ধুয়ে নিন। এরপর পর্যাপ্ত পরিমাণে ক্রিম নিয়ে পুরো মুখে এবং গলায় আলতো হাতে বৃত্তাকার মোশনে ম্যাসাজ করে মিশিয়ে দিন। ভালো ফলাফলের জন্য নিয়মিত দিনে ২ বার ব্যবহার করুন।";
 
   return (
     <div className="w-full bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-12">
@@ -81,16 +119,11 @@ export default function ProductTabs({ description, ingredients, highlights, bran
             </div>
 
             {/* Additional Marketing copy in Bengali */}
-            <div className="border-t border-gray-100 pt-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="border-t border-gray-150 pt-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h3 className="text-lg font-black text-gray-800">কেন এই কোলাজেন ক্রিমটি বেছে নেবেন?</h3>
+                <h3 className="text-lg font-black text-gray-800">{marketingTitle}</h3>
                 <ul className="space-y-3">
-                  {[
-                    "ত্বকের বলিরেখা এবং ফাইন লাইনস দ্রুত দূর করে স্কিন টানটান করে।",
-                    "খাঁটি সোনার কণা (Gold Particles) ত্বককে দেয় তাৎক্ষণিক ন্যাচারাল গ্লো।",
-                    "রিকম্বিন্যান্ট কোলাজেন ত্বকের ইলাস্টিসিটি বৃদ্ধি করে চামড়া ঝুলে যাওয়া রোধ করে।",
-                    "গরমের জন্য খুবই লাইটওয়েট এবং নন-গ্রীসি ফর্মুলা, যা চিটচিটে ভাব দেয় না।"
-                  ].map((text, i) => (
+                  {marketingBullets.map((text, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-gray-700 font-medium">
                       <CheckCircle2 size={16} className="text-brand-blue mt-0.5 shrink-0" />
                       <span>{text}</span>
@@ -102,7 +135,7 @@ export default function ProductTabs({ description, ingredients, highlights, bran
               <div className="space-y-4">
                 <h3 className="text-lg font-black text-gray-800">ব্যবহারের নিয়ম (How to Use)</h3>
                 <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                  প্রতিদিন সকালে ও রাতে ফেসওয়াশ বা ক্লিনজার দিয়ে মুখ ভালো করে ধুয়ে নিন। এরপর পর্যাপ্ত পরিমাণে ক্রিম নিয়ে পুরো মুখে এবং গলায় আলতো হাতে বৃত্তাকার মোশনে ম্যাসাজ করে মিশিয়ে দিন। ভালো ফলাফলের জন্য নিয়মিত দিনে ২ বার ব্যবহার করুন।
+                  {usageInstructions}
                 </p>
                 <div className="bg-yellow-50 border border-yellow-200/50 p-4 rounded-xl text-xs text-yellow-800 font-semibold">
                   ⚠️ সতর্কতা: শুধুমাত্র বাহ্যিক ব্যবহারের জন্য। চোখে লাগলে জল দিয়ে ধুয়ে ফেলুন। শিশুদের নাগালের বাইরে রাখুন।
@@ -121,9 +154,9 @@ export default function ProductTabs({ description, ingredients, highlights, bran
                   {[
                     { label: 'Product Name', value: name },
                     { label: 'Brand', value: brand },
-                    { label: 'Volume (Net)', value: '50g' },
+                    { label: 'Volume (Net)', value: isEyeCream ? '30g' : isEssence ? '40ml' : '50g' },
                     { label: 'Skin Type', value: 'All skin types, especially aging & dry skin (সব ধরণের ত্বকের জন্য)' },
-                    { label: 'Origin', value: 'South Korea (দক্ষিণ কোরিয়া)' },
+                    { label: 'Origin', value: 'China (চীন)' },
                     { label: 'Key Ingredients', value: ingredients.join(', ') },
                     { label: 'Authenticity', value: '100% Genuine product guaranteed (QR Verification code included)' },
                   ].map((row, idx) => (
@@ -150,7 +183,7 @@ export default function ProductTabs({ description, ingredients, highlights, bran
                 <ul className="space-y-2 text-sm text-gray-600 font-medium">
                   <li className="flex justify-between border-b border-gray-50 pb-1.5">
                     <span>ঢাকা সিটির ভেতরে:</span>
-                    <span className="font-bold text-gray-900">৳৬০ (১-২ দিন)</span>
+                    <span className="font-bold text-gray-900">৳৮০ (১-২ দিন)</span>
                   </li>
                   <li className="flex justify-between border-b border-gray-50 pb-1.5">
                     <span>ঢাকা সিটির বাইরে:</span>

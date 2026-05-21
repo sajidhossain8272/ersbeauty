@@ -1,13 +1,15 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { getProductBySlug } from '@/lib/db';
+import Link from 'next/link';
+import { getProductBySlug, getProductsData } from '@/lib/db';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CountdownTimer from '@/components/CountdownTimer';
 import PurchasePanel from '@/components/PurchasePanel';
 import ProductTabs from '@/components/ProductTabs';
 import ReviewEngine from '@/components/ReviewEngine';
+import ImageGallery from '@/components/ImageGallery';
 import { ShieldCheck, Truck, RotateCcw, HelpCircle, Star } from 'lucide-react';
 
 interface ProductPageProps {
@@ -26,6 +28,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const averageRating = product.reviews.length > 0 
     ? (product.reviews.reduce((acc, item) => acc + item.rating, 0) / product.reviews.length).toFixed(1)
     : "5.0";
+
+  // Get suggested products (other than current product)
+  const allProducts = getProductsData();
+  const suggestedProducts = allProducts.filter((p) => p.slug !== slug);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -52,47 +58,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Left Column: Image Showcase (lg:col-span-5) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             
-            {/* Image Wrapper */}
-            <div className="relative aspect-square w-full bg-gray-50 border border-gray-100 rounded-2xl overflow-hidden group shadow-sm flex items-center justify-center">
-              {/* Floating Discount Badge */}
-              <div className="absolute top-4 left-4 z-10 bg-brand-red text-white text-xs sm:text-sm font-black px-3.5 py-1.5 rounded-full shadow-lg shadow-brand-red/20 transform -rotate-3 select-none animate-pulse">
-                -{product.discountPercent}% OFF
-              </div>
-
-              {/* Main Product Image */}
-              <div className="relative w-full h-full p-2">
-                <Image
-                  src={product.imageUrl}
-                  alt={product.name}
-                  fill
-                  priority
-                  className="object-contain transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 500px"
-                />
-              </div>
-            </div>
-
-            {/* Thumbnail Gallery (Korean Mart Style: Premium visual previews) */}
-            <div className="grid grid-cols-4 gap-3 select-none">
-              <div className="aspect-square rounded-xl border-2 border-brand-blue overflow-hidden relative bg-gray-50 p-1 cursor-pointer">
-                <Image src={product.imageUrl} alt="Thumbnail 1" fill className="object-contain" />
-              </div>
-              
-              <div className="aspect-square rounded-xl border border-gray-200 overflow-hidden relative bg-gray-50 flex items-center justify-center flex-col p-1 hover:border-brand-blue transition-colors cursor-pointer text-center">
-                <div className="text-[10px] font-black text-brand-blue leading-none">COLLAGEN</div>
-                <span className="text-[8px] font-bold text-gray-500 mt-1">রিকম্বিন্যান্ট</span>
-              </div>
-
-              <div className="aspect-square rounded-xl border border-gray-200 overflow-hidden relative bg-gray-50 flex items-center justify-center flex-col p-1 hover:border-brand-blue transition-colors cursor-pointer text-center">
-                <div className="text-[10px] font-black text-amber-500 leading-none">24K GOLD</div>
-                <span className="text-[8px] font-bold text-gray-500 mt-1">খাঁটি সোনা</span>
-              </div>
-
-              <div className="aspect-square rounded-xl border border-gray-200 overflow-hidden relative bg-gray-50 flex items-center justify-center flex-col p-1 hover:border-brand-blue transition-colors cursor-pointer text-center">
-                <div className="text-[10px] font-black text-emerald-500 leading-none">HYDRATE</div>
-                <span className="text-[8px] font-bold text-gray-500 mt-1">গভীর আর্দ্রতা</span>
-              </div>
-            </div>
+            {/* Client image gallery with all 5 pictures */}
+            <ImageGallery 
+              images={product.images || [product.imageUrl]} 
+              productName={product.name} 
+              discountPercent={product.discountPercent} 
+            />
 
             {/* Sidebar Trust Highlights */}
             <div className="mt-4 border border-gray-100 rounded-xl p-4 bg-gray-50/50 space-y-3.5">
@@ -102,7 +73,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
                 <div className="text-xs">
                   <p className="font-extrabold text-gray-900">100% Genuine Skincare</p>
-                  <p className="text-gray-500 font-semibold mt-0.5">Imported directly from Seoul, South Korea.</p>
+                  <p className="text-gray-500 font-semibold mt-0.5">Imported directly from China (চীন).</p>
                 </div>
               </div>
 
@@ -186,12 +157,75 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         {/* Tabs Detail Section */}
         <ProductTabs 
+          id={product.id}
           description={product.description}
           ingredients={product.ingredients}
           highlights={product.highlights}
           brand={product.brand}
           name={product.name}
         />
+
+        {/* Suggested Products (You May Also Like) */}
+        <div className="mt-16 pt-10 border-t border-gray-100">
+          <h3 className="text-xl font-black text-gray-900 mb-6 flex items-center gap-2">
+            <span>আপনার পছন্দ হতে পারে এমন প্রোডাক্টস (Suggested Products)</span>
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {suggestedProducts.map((p) => {
+              const isOutOfStock = p.stockStatus.toLowerCase().includes('out of stock') || p.stockStatus.includes('স্টক শেষ');
+              return (
+                <Link 
+                  href={`/product/${p.slug}`}
+                  key={p.id}
+                  className="bg-white rounded-2xl border border-gray-150 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col group"
+                >
+                  <div className="relative aspect-square w-full bg-gray-50 flex items-center justify-center p-4">
+                    {/* Floating Discount Tag */}
+                    <div className="absolute top-3 left-3 z-10 bg-brand-red text-white text-[10px] font-black px-2 py-0.5 rounded-full">
+                      -{p.discountPercent}%
+                    </div>
+                    {isOutOfStock && (
+                      <div className="absolute inset-0 bg-black/40 z-20 flex items-center justify-center">
+                        <span className="bg-brand-red text-white text-xs font-black px-3 py-1 rounded-full uppercase">
+                          স্টক শেষ
+                        </span>
+                      </div>
+                    )}
+                    <div className="relative w-full h-full min-h-[160px] flex items-center justify-center">
+                      <Image 
+                        src={p.imageUrl} 
+                        alt={p.name} 
+                        fill
+                        className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 200px"
+                      />
+                    </div>
+                  </div>
+                  <div className="p-4 flex flex-col flex-grow">
+                    <span className="text-[10px] font-black text-brand-blue uppercase tracking-wider mb-1">
+                      {p.brand}
+                    </span>
+                    <h4 className="text-xs font-extrabold text-gray-800 line-clamp-2 leading-snug min-h-[32px] group-hover:text-brand-blue transition-colors">
+                      {p.name.split(' (')[0]}
+                    </h4>
+                    <div className="flex items-baseline gap-2 mt-2">
+                      <span className="text-sm font-black text-brand-blue">৳{p.price.toLocaleString()}</span>
+                      <span className="text-xs text-gray-400 line-through">৳{p.originalPrice.toLocaleString()}</span>
+                    </div>
+                    <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                      <span className="text-[10px] font-extrabold text-brand-red">
+                        {p.stockStatus}
+                      </span>
+                      <span className="text-xs font-black text-brand-blue group-hover:underline flex items-center gap-1">
+                        বিস্তারিত দেখুন →
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
 
         {/* Review Section */}
         <ReviewEngine reviews={product.reviews} />

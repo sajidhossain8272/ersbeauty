@@ -25,6 +25,7 @@ export interface Product {
   discountPercent: number;
   saveAmount: number;
   imageUrl: string;
+  images?: string[];
   stockStatus: string;
   isAuthentic: boolean;
   flashSaleEnds: string;

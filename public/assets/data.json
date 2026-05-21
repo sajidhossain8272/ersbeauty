@@ -6,11 +6,18 @@
       "name": "Aurelia London Golden Recombinant Collagen Anti-Wrinkle Cream (আউরেলিয়া গোল্ডেন রিকম্বিন্যান্ট কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম)",
       "brand": "Aurelia London",
       "description": "বয়সের ছাপ ও বলিরেখা নিয়ে আর চিন্তা নয়! আপনার ত্বকের হারিয়ে যাওয়া তারুণ্য আর আকর্ষণীয় উজ্জ্বলতা ফিরিয়ে আনতে ব্যবহার করুন 'আউরেলিয়া গোল্ডেন কোলাজেন ক্রিম'। এটি ত্বকের গভীরে গিয়ে কোলাজেনের ঘাটতি পূরণ করে এবং বলিরেখা দূর করে ত্বককে টানটান ও নরম রাখে। এতে থাকা খাঁটি সোনার কণা ত্বককে ভেতর থেকে ফর্সা ও গ্লোয়িং করে তোলে, যা আপনাকে দেবে একটি নিখুঁত গ্লাস স্কিন লুক। এটি গরমের দিনেও ব্যবহারের জন্য অত্যন্ত উপযোগী কারণ এটি ত্বকে কোনো চিটচিটে ভাব তৈরি করে না।",
-      "price": 990,
+      "price": 1090,
       "originalPrice": 1690,
-      "discountPercent": 41,
-      "saveAmount": 700,
-      "imageUrl": "/images/collagen-cream.jpg",
+      "discountPercent": 36,
+      "saveAmount": 600,
+      "imageUrl": "/images/product-1.jpg",
+      "images": [
+        "/images/product-1.jpg",
+        "/images/product-2.jpg",
+        "/images/product-3.jpg",
+        "/images/product-4.jpg",
+        "/images/product-5.jpg"
+      ],
       "stockStatus": "Very few units left at this price",
       "isAuthentic": true,
       "flashSaleEnds": "2026-05-30T23:59:59.000Z",
@@ -65,6 +72,66 @@
           "date": "5/08/2026"
         }
       ]
+    },
+    {
+      "id": "ersbeauty-collagen-eye-cream",
+      "slug": "ersbeauty-collagen-eye-cream",
+      "name": "Aurelia London Golden Recombinant Collagen Eye Cream (আউরেলিয়া গোল্ডেন রিকম্বিন্যান্ট কোলাজেন আই ক্রিম)",
+      "brand": "Aurelia London",
+      "description": "চোখের চারপাশের কালো দাগ বা ডার্ক সার্কেল ও সূক্ষ্ম বলিরেখা দূর করতে অত্যন্ত কার্যকরী এই আই ক্রিম। রিকম্বিন্যান্ট কোলাজেন ও খাঁটি সোনার কণা সমৃদ্ধ এই ফর্মুলা চোখের চারপাশের ত্বককে টানটান ও উজ্জ্বল রাখে। এটি একটি প্রিমিয়াম ফর্মুলা যা দ্রুত শোষিত হয়।",
+      "price": 790,
+      "originalPrice": 1250,
+      "discountPercent": 37,
+      "saveAmount": 460,
+      "imageUrl": "/images/product-2.jpg",
+      "images": [
+        "/images/product-2.jpg"
+      ],
+      "stockStatus": "স্টক শেষ (Out of Stock)",
+      "isAuthentic": true,
+      "flashSaleEnds": "2026-05-30T23:59:59.000Z",
+      "ingredients": [
+        "Recombinant Collagen (রিকম্বিন্যান্ট কোলাজেন)",
+        "Gold Particles (সোনার কণা)",
+        "Hyaluronic Acid (হায়ালুরোনিক অ্যাসিড)"
+      ],
+      "highlights": [
+        {
+          "title": "ডার্ক সার্কেল হ্রাস",
+          "description": "চোখের নিচের কালো দাগ দূর করে এবং ক্লান্ত ভাব দূর করতে সাহায্য করে।"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "id": "ersbeauty-collagen-brightening-essence",
+      "slug": "ersbeauty-collagen-brightening-essence",
+      "name": "Aurelia London Recombinant Collagen Brightening Essence (আউরেলিয়া রিকম্বিন্যান্ট কোলাজেন ব্রাইটেনিং এসেন্স)",
+      "brand": "Aurelia London",
+      "description": "আপনার ত্বককে ভেতর থেকে ফর্সা, কোমল ও আকর্ষণীয় করতে ব্যবহার করুন কোলাজেন ব্রাইটেনিং এসেন্স। এটি ত্বকের গভীরে পুষ্টি জুগিয়ে রুক্ষতা দূর করে এবং ত্বকের কালো দাগ হালকা করে গ্লাস স্কিন গ্লো এনে দেয়।",
+      "price": 1290,
+      "originalPrice": 1990,
+      "discountPercent": 35,
+      "saveAmount": 700,
+      "imageUrl": "/images/product-3.jpg",
+      "images": [
+        "/images/product-3.jpg"
+      ],
+      "stockStatus": "স্টক শেষ (Out of Stock)",
+      "isAuthentic": true,
+      "flashSaleEnds": "2026-05-30T23:59:59.000Z",
+      "ingredients": [
+        "Niacinamide (নিয়াসিনামাইড)",
+        "Collagen peptides (কোলাজেন পেপটাইড)",
+        "Pure Gold particles (খাঁটি সোনার কণা)"
+      ],
+      "highlights": [
+        {
+          "title": "তাৎক্ষণিক উজ্জ্বলতা",
+          "description": "ত্বকে দ্রুত শোষিত হয়ে ইনস্ট্যান্ট গ্লো এবং ব্রাইটেনিং ইফেক্ট দেয়।"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
