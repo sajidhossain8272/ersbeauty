@@ -81,6 +81,18 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex items-start gap-2.5 text-sm text-gray-400">
+            <Mail size={18} className="text-brand-blue mt-0.5 shrink-0" />
+            <div>
+              <p className="font-semibold text-gray-300">Email Support:</p>
+              <a 
+                href="mailto:ersbeautybd@gmail.com" 
+                className="hover:text-white transition-colors"
+              >
+                ersbeautybd@gmail.com
+              </a>
+            </div>
+          </div>
+          <div className="flex items-start gap-2.5 text-sm text-gray-400">
             <MapPin size={18} className="text-brand-blue mt-0.5 shrink-0" />
             <div>
               <p className="font-semibold text-gray-300">Address:</p>

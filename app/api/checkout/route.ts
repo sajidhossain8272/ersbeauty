@@ -184,7 +184,7 @@ export async function POST(request: Request) {
     const smtpPass = process.env.EMAIL_PASS || '';
     const smtpSecure = process.env.EMAIL_SECURE === 'true';
 
-    const recipient = 'iamcuriousgamer@gmail.com';
+    const recipient = 'ersbeautybd@gmail.com';
 
     if (smtpUser && smtpPass) {
       const transporter = nodemailer.createTransport({
