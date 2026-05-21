@@ -1,0 +1,187 @@
+'use client';
+
+import React, { useState } from 'react';
+import { FileText, ClipboardList, Truck, Sparkles, CheckCircle2 } from 'lucide-react';
+
+interface TabHighlight {
+  title: string;
+  description: string;
+}
+
+interface ProductTabsProps {
+  description: string;
+  ingredients: string[];
+  highlights: TabHighlight[];
+  brand: string;
+  name: string;
+}
+
+export default function ProductTabs({ description, ingredients, highlights, brand, name }: ProductTabsProps) {
+  const [activeTab, setActiveTab] = useState<'description' | 'specifications' | 'shipping'>('description');
+
+  const tabs = [
+    { id: 'description', label: 'Description', icon: FileText },
+    { id: 'specifications', label: 'Specifications', icon: ClipboardList },
+    { id: 'shipping', label: 'Shipping & Return', icon: Truck },
+  ] as const;
+
+  return (
+    <div className="w-full bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-12">
+      {/* Tab Navigation */}
+      <div className="flex border-b border-gray-100 bg-gray-50/50">
+        {tabs.map((tab) => {
+          const IconComp = tab.icon;
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex-1 py-4 px-6 text-sm font-bold flex items-center justify-center gap-2 border-b-2 transition-all duration-200 cursor-pointer ${
+                isActive
+                  ? 'border-brand-blue text-brand-blue bg-white'
+                  : 'border-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-50/30'
+              }`}
+            >
+              <IconComp size={16} />
+              <span>{tab.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Tab Content */}
+      <div className="p-6 md:p-8">
+        
+        {/* Tab 1: Description */}
+        {activeTab === 'description' && (
+          <div className="space-y-8 animate-fadeIn">
+            {/* Main paragraph */}
+            <div className="prose max-w-none">
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
+                {description}
+              </p>
+            </div>
+
+            {/* Highlights Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+              {highlights.map((highlight, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-gray-50 p-5 rounded-xl border border-gray-100 hover:shadow-md hover:border-brand-blue/20 transition-all duration-300 flex flex-col gap-3 group"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                    <Sparkles size={18} />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-gray-900 text-base mb-1.5">{highlight.title}</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed font-medium">{highlight.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Additional Marketing copy in Bengali */}
+            <div className="border-t border-gray-100 pt-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-lg font-black text-gray-800">কেন এই কোলাজেন ক্রিমটি বেছে নেবেন?</h3>
+                <ul className="space-y-3">
+                  {[
+                    "ত্বকের বলিরেখা এবং ফাইন লাইনস দ্রুত দূর করে স্কিন টানটান করে।",
+                    "খাঁটি সোনার কণা (Gold Particles) ত্বককে দেয় তাৎক্ষণিক ন্যাচারাল গ্লো।",
+                    "রিকম্বিন্যান্ট কোলাজেন ত্বকের ইলাস্টিসিটি বৃদ্ধি করে চামড়া ঝুলে যাওয়া রোধ করে।",
+                    "গরমের জন্য খুবই লাইটওয়েট এবং নন-গ্রীসি ফর্মুলা, যা চিটচিটে ভাব দেয় না।"
+                  ].map((text, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-700 font-medium">
+                      <CheckCircle2 size={16} className="text-brand-blue mt-0.5 shrink-0" />
+                      <span>{text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-lg font-black text-gray-800">ব্যবহারের নিয়ম (How to Use)</h3>
+                <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                  প্রতিদিন সকালে ও রাতে ফেসওয়াশ বা ক্লিনজার দিয়ে মুখ ভালো করে ধুয়ে নিন। এরপর পর্যাপ্ত পরিমাণে ক্রিম নিয়ে পুরো মুখে এবং গলায় আলতো হাতে বৃত্তাকার মোশনে ম্যাসাজ করে মিশিয়ে দিন। ভালো ফলাফলের জন্য নিয়মিত দিনে ২ বার ব্যবহার করুন।
+                </p>
+                <div className="bg-yellow-50 border border-yellow-200/50 p-4 rounded-xl text-xs text-yellow-800 font-semibold">
+                  ⚠️ সতর্কতা: শুধুমাত্র বাহ্যিক ব্যবহারের জন্য। চোখে লাগলে জল দিয়ে ধুয়ে ফেলুন। শিশুদের নাগালের বাইরে রাখুন।
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: Specifications */}
+        {activeTab === 'specifications' && (
+          <div className="animate-fadeIn">
+            <div className="max-w-2xl overflow-hidden rounded-xl border border-gray-150">
+              <table className="w-full text-left border-collapse text-sm">
+                <tbody>
+                  {[
+                    { label: 'Product Name', value: name },
+                    { label: 'Brand', value: brand },
+                    { label: 'Volume (Net)', value: '50g' },
+                    { label: 'Skin Type', value: 'All skin types, especially aging & dry skin (সব ধরণের ত্বকের জন্য)' },
+                    { label: 'Origin', value: 'South Korea (দক্ষিণ কোরিয়া)' },
+                    { label: 'Key Ingredients', value: ingredients.join(', ') },
+                    { label: 'Authenticity', value: '100% Genuine product guaranteed (QR Verification code included)' },
+                  ].map((row, idx) => (
+                    <tr 
+                      key={idx} 
+                      className={`border-b border-gray-100 ${idx % 2 === 0 ? 'bg-gray-50/50' : 'bg-white'}`}
+                    >
+                      <td className="py-4 px-5 font-bold text-gray-900 w-1/3 border-r border-gray-100">{row.label}</td>
+                      <td className="py-4 px-5 text-gray-700 font-semibold">{row.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: Shipping & Return */}
+        {activeTab === 'shipping' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="border border-gray-150 p-6 rounded-xl space-y-3">
+                <h4 className="font-extrabold text-gray-900 text-base">শিপিং পলিসি (Shipping Policy)</h4>
+                <ul className="space-y-2 text-sm text-gray-600 font-medium">
+                  <li className="flex justify-between border-b border-gray-50 pb-1.5">
+                    <span>ঢাকা সিটির ভেতরে:</span>
+                    <span className="font-bold text-gray-900">৳৬০ (১-২ দিন)</span>
+                  </li>
+                  <li className="flex justify-between border-b border-gray-50 pb-1.5">
+                    <span>ঢাকা সিটির বাইরে:</span>
+                    <span className="font-bold text-gray-900">৳১২০ (২-৩ দিন)</span>
+                  </li>
+                  <li className="flex justify-between text-brand-blue font-bold">
+                    <span>ফ্রি ডেলিভারি অফার:</span>
+                    <span>৳১,৫০০+ অর্ডারে ফ্রি ডেলিভারি!</span>
+                  </li>
+                </ul>
+                <p className="text-xs text-gray-500 pt-2 leading-relaxed">
+                  * আমরা সারাদেশে অত্যন্ত সতর্কতার সাথে ক্যাশ অন ডেলিভারি (Cash on Delivery) সুবিধা প্রদান করে থাকি।
+                </p>
+              </div>
+
+              <div className="border border-gray-150 p-6 rounded-xl space-y-3">
+                <h4 className="font-extrabold text-gray-900 text-base">রিটার্ন ও রিফান্ড (Return & Refund)</h4>
+                <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                  পণ্য হাতে পাওয়ার পর যদি কোনো সমস্যা দেখতে পান (যেমন: ড্যামেজ বা ভুল প্রোডাক্ট), তবে ২৪ ঘণ্টার মধ্যে আমাদের সাপোর্ট লাইনে যোগাযোগ করুন।
+                </p>
+                <ul className="space-y-1.5 text-xs text-gray-500 list-disc list-inside leading-relaxed">
+                  <li>প্রোডাক্ট সম্পূর্ণ অব্যবহৃত ও ইনট্যাক্ট থাকতে হবে।</li>
+                  <li>সিকিউরিটি বারকোড বা কিউআর কোড স্ক্র্যাচ করা হওয়া যাবে না।</li>
+                  <li>ডেলিভারির সময় পাওয়া মেমোটি সাথে রাখতে হবে।</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+}
