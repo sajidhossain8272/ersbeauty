@@ -58,39 +58,47 @@ export async function POST(request: Request) {
       try {
         const itemsOrdered = items.map((item: any) => `${item.name} (${item.brand}) [Qty: ${item.quantity}]`).join(', ');
         
-        // Use a background call so we don't block the user's checkout response
-        fetch(googleSheetUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            orderId: newOrder.orderId,
-            createdAt: new Date().toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }), // Local BD time
-            customerName: customer.name,
-            customerPhone: customer.phone,
-            customerAddress: customer.address,
-            customerArea: customer.area === 'dhaka' ? 'Inside Dhaka' : 'Outside Dhaka',
-            itemsOrdered,
-            deliveryCharge: newOrder.deliveryCharge,
-            totalAmount: newOrder.totalAmount,
-            paymentMethod: 'Cash on Delivery',
-            status: newOrder.status,
-          }),
-        }).then(async (response) => {
-          if (response.ok) {
-            const resData = await response.json();
+        // Wait up to 4 seconds for Google Sheets so Vercel serverless doesn't terminate before execution
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+        try {
+          const sheetResponse = await fetch(googleSheetUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            signal: controller.signal,
+            body: JSON.stringify({
+              orderId: newOrder.orderId,
+              createdAt: new Date().toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }), // Local BD time
+              customerName: customer.name,
+              customerPhone: customer.phone,
+              customerAddress: customer.address,
+              customerArea: customer.area === 'dhaka' ? 'Inside Dhaka' : 'Outside Dhaka',
+              itemsOrdered,
+              deliveryCharge: newOrder.deliveryCharge,
+              totalAmount: newOrder.totalAmount,
+              paymentMethod: 'Cash on Delivery',
+              status: newOrder.status,
+            }),
+          });
+          clearTimeout(timeoutId);
+
+          if (sheetResponse.ok) {
+            const resData = await sheetResponse.json().catch(() => ({}));
             if (resData.success) {
               console.log('Order successfully synced with Google Sheets!');
             } else {
-              console.warn('Google Sheets Apps Script returned an error:', resData.error);
+              console.warn('Google Sheets Apps Script returned:', resData.error || 'ok');
             }
           } else {
-            console.warn('Failed to contact Google Sheets. Status:', response.status);
+            console.warn('Failed to contact Google Sheets. Status:', sheetResponse.status);
           }
-        }).catch((err) => {
-          console.error('Google Sheets async request failed:', err);
-        });
+        } catch (fetchErr: any) {
+          clearTimeout(timeoutId);
+          console.error('Google Sheets fetch failed (continuing order):', fetchErr?.message || fetchErr);
+        }
       } catch (error) {
         console.error('Failed to dispatch Google Sheets request:', error);
       }
@@ -177,39 +185,47 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    // 3. Send Email using Nodemailer
-    const smtpHost = process.env.EMAIL_HOST || '';
+    // 3. Send Email using Nodemailer (Isolated in try-catch so auth errors never break checkout)
+    const smtpHost = process.env.EMAIL_HOST || 'smtp.gmail.com';
     const smtpPort = parseInt(process.env.EMAIL_PORT || '587');
     const smtpUser = process.env.EMAIL_USER || '';
     const smtpPass = process.env.EMAIL_PASS || '';
     const smtpSecure = process.env.EMAIL_SECURE === 'true';
 
-    const recipient = 'ersbeautybd@gmail.com';
+    const recipient = process.env.ORDER_NOTIFICATION_EMAIL || 'ersbeautybd@gmail.com';
 
     if (smtpUser && smtpPass) {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: smtpSecure,
-        auth: {
-          user: smtpUser,
-          pass: smtpPass,
-        },
-      });
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpSecure,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+          // Short timeout to avoid hanging serverless functions
+          connectionTimeout: 5000,
+          greetingTimeout: 5000,
+        });
 
-      await transporter.sendMail({
-        from: `"ersbeauty Order Engine" <${smtpUser}>`,
-        to: recipient,
-        subject: emailSubject,
-        html: emailBodyHtml,
-      });
+        await transporter.sendMail({
+          from: `"ersbeauty Order Engine" <${smtpUser}>`,
+          to: recipient,
+          subject: emailSubject,
+          html: emailBodyHtml,
+        });
 
-      console.log(`Email successfully sent to ${recipient} via Nodemailer.`);
+        console.log(`Email successfully sent to ${recipient} via Nodemailer.`);
+      } catch (mailError: any) {
+        console.error('Nodemailer SMTP Error (order was recorded anyway):', mailError?.message || mailError);
+        console.warn('NOTE: Check Gmail App Password settings. Make sure EMAIL_PASS uses a 16-character Google App Password.');
+      }
     } else {
       console.warn('------------------------------------------------------------');
       console.warn('WARNING: SMTP configuration is missing from environment variables.');
       console.warn(`Could not send order email to ${recipient}.`);
-      console.warn('To fix this, add the following to your .env file:');
+      console.warn('To fix this, add the following to your .env file or Vercel Environment Variables:');
       console.warn('EMAIL_HOST=smtp.gmail.com');
       console.warn('EMAIL_PORT=587');
       console.warn('EMAIL_USER=your_email@gmail.com');
@@ -229,7 +245,7 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error('Checkout API error:', error);
     return NextResponse.json(
-      { success: false, message: error.message || 'An error occurred during checkout.' },
+      { success: false, message: 'অর্ডারটি সাময়িকভাবে সম্পন্ন করা যায়নি। অনুগ্রহ করে একটু পর আবার চেষ্টা করুন বা সরাসরি যোগাযোগ করুন।' },
       { status: 500 }
     );
   }

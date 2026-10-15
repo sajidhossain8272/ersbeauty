@@ -82,10 +82,10 @@ export default async function Home({
                 <ArrowRight size={16} />
               </a>
               <a 
-                href="/product/dr-yunmei-collagen-anti-wrinkle-cream" 
+                href="/product/gold-collagen-anti-wrinkle-cream" 
                 className="px-8 py-4 bg-white/70 hover:bg-white text-gray-800 border border-pink-200 rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-sm transition-all duration-200"
               >
-                <span>বেস্ট সেলার ক্রিম</span>
+                <span>🔥 বেস্ট সেলার গোল্ড ক্রিম</span>
               </a>
             </div>
 
@@ -111,8 +111,9 @@ export default async function Home({
             <div className="relative w-full max-w-[420px] rounded-3xl overflow-hidden bg-white/70 backdrop-blur-md border border-pink-100 p-6 flex flex-col justify-between shadow-xl shadow-pink-100/50">
               {/* Product Badge */}
               <div className="flex justify-between items-start">
-                <span className="bg-brand-red text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider animate-pulse">
-                  HOT DEALS
+                <span className="bg-brand-red text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider animate-pulse flex items-center gap-1">
+                  <Flame size={12} className="fill-white" />
+                  HOT PRODUCT #1
                 </span>
                 <div className="flex text-yellow-400 gap-0.5">
                   {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-current" />)}
@@ -122,8 +123,8 @@ export default async function Home({
               {/* Central representation (Enlarged Image) */}
               <div className="relative w-full h-[340px] my-4 flex items-center justify-center">
                 <Image 
-                  src="/images/product-4.jpg" 
-                  alt="Dr. Yunmei Gold Recombinant Collagen Anti-Wrinkle Cream" 
+                  src="/images/gold-collagen-cream.png" 
+                  alt="Dr. Xiangmei Gold Collagen Anti-Wrinkle Cream" 
                   fill
                   priority
                   className="object-contain hover:scale-105 transition-transform duration-300 p-2"
@@ -133,17 +134,17 @@ export default async function Home({
 
               <div className="space-y-1.5">
                 <h3 className="font-extrabold text-gray-900 text-sm sm:text-base leading-snug">
-                  Dr. Yunmei Gold Recombinant Collagen Anti-Wrinkle Cream <br />
-                  <span className="text-xs font-semibold text-gray-500">(ডক্টর ইউনমেই গোল্ড রিকম্বিন্যান্ট কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম)</span>
+                  Dr. Xiangmei Gold Collagen Anti-Wrinkle Cream <br />
+                  <span className="text-xs font-semibold text-gray-500">(গোল্ড কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম - ডক্টর শিয়াংমেই)</span>
                 </h3>
-                <p className="text-[10px] font-bold text-gray-500">৩টি কাস্টমার রিভিউ ও অফার প্রাইস</p>
+                <p className="text-[10px] font-bold text-gray-500">৪টি ভেরিফাইড রিভিউ • লাইভ ভিডিও সহ</p>
                 <div className="flex items-center justify-between pt-1">
-                  <span className="text-base font-black text-brand-blue">৳১,০৯০ <span className="text-xs text-gray-400 line-through">৳১,৬৯০</span></span>
+                  <span className="text-base font-black text-brand-blue">৳১,০৯০ <span className="text-xs text-gray-400 line-through">৳১,৭৫০</span></span>
                   <Link 
-                    href="/product/dr-yunmei-collagen-anti-wrinkle-cream" 
-                    className="text-xs font-black text-brand-blue hover:underline bg-pink-50 px-3 py-1.5 rounded-lg border border-pink-100/50"
+                    href="/product/gold-collagen-anti-wrinkle-cream" 
+                    className="text-xs font-black text-brand-blue hover:underline bg-pink-50 px-3 py-1.5 rounded-lg border border-pink-100/50 flex items-center gap-1"
                   >
-                    অর্ডার করুন →
+                    <span>অর্ডার করুন →</span>
                   </Link>
                 </div>
               </div>
@@ -242,7 +243,9 @@ export default async function Home({
               return (
                 <div 
                   key={product.id}
-                  className="bg-white rounded-3xl border border-pink-100/70 shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
+                  className={`bg-white rounded-3xl border shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group relative ${
+                    product.isHot ? 'border-amber-300 ring-2 ring-amber-300/40' : 'border-pink-100/70'
+                  }`}
                 >
                   {/* Image showcase */}
                   <div className="relative aspect-square w-full bg-gray-50 flex items-center justify-center p-6 select-none">
@@ -250,6 +253,21 @@ export default async function Home({
                     <div className="absolute top-4 left-4 z-10 bg-brand-red text-white text-xs font-black px-3 py-1.5 rounded-full transform -rotate-3">
                       -{product.discountPercent}% OFF
                     </div>
+
+                    {/* Hot Product Badge */}
+                    {product.isHot && (
+                      <div className="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[10px] font-black px-3 py-1 rounded-full shadow-md flex items-center gap-1 uppercase tracking-wider animate-pulse">
+                        <Flame size={12} className="fill-white" />
+                        <span>HOT PRODUCT</span>
+                      </div>
+                    )}
+
+                    {/* Video badge if product has video */}
+                    {product.videos && product.videos.length > 0 && (
+                      <div className="absolute bottom-3 left-4 z-10 bg-black/75 backdrop-blur-sm text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md flex items-center gap-1 shadow">
+                        <span>🎬 ভিডিও সহ</span>
+                      </div>
+                    )}
 
                     {isOutOfStock && (
                       <div className="absolute inset-0 bg-black/40 z-20 flex items-center justify-center">

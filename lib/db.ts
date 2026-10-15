@@ -34,6 +34,9 @@ export interface Product {
   highlights: ProductHighlight[];
   reviews: ProductReview[];
   category?: string;
+  videoUrl?: string;
+  videos?: string[];
+  isHot?: boolean;
 }
 
 export function getProductsData(): Product[] {
@@ -50,5 +53,13 @@ export function getProductsData(): Product[] {
 
 export function getProductBySlug(slug: string): Product | undefined {
   const products = getProductsData();
-  return products.find((p) => p.slug === slug);
+  const directMatch = products.find((p) => p.slug === slug);
+  if (directMatch) return directMatch;
+
+  // Support clean alias slugs
+  if (slug === 'gold-collagen-cream' || slug === 'dr-xiangmei-gold-collagen-anti-wrinkle-cream' || slug === 'gold-collagen') {
+    return products.find((p) => p.slug === 'gold-collagen-anti-wrinkle-cream');
+  }
+
+  return undefined;
 }

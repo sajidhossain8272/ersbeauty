@@ -1,6 +1,91 @@
 {
   "products": [
     {
+      "id": "gold-collagen-anti-wrinkle-cream",
+      "slug": "gold-collagen-anti-wrinkle-cream",
+      "name": "Dr. Xiangmei Gold Collagen Anti-Wrinkle Cream (গোল্ড কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম - ডক্টর শিয়াংমেই)",
+      "brand": "Dr. Xiangmei",
+      "category": "Skin Care",
+      "isHot": true,
+      "description": "বয়সের ছাপ ও বলিরেখা দূর করে ত্বকের ন্যাচারাল গ্লো ফিরিয়ে আনতে ব্যবহার করুন অরিজিনাল 'গোল্ড কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম' (৫০ গ্রাম)। এতে রয়েছে রিকম্বিন্যান্ট কোলাজেন, ট্রিপেপটাইড-১ (Tripeptide-1), অ্যাসিটাইল হেক্সাপেপটাইড-৮ (Acetyl Hexapeptide-8) এবং খাঁটি অ্যাক্টিভ সোনার কণা (24K Gold Particles)। এটি ত্বকের গভীর স্তরে গিয়ে কোলাজেন উৎপাদন বৃদ্ধি করে, ত্বকের ঝুলে পড়া ভাব দূর করে টানটান করে এবং রিঙ্কেল ও ফাইন লাইনস মুছে ফেলে। এর সিল্কি মসৃণ ফর্মুলা ত্বকে দ্রুত শোষিত হয় এবং কোনো চিটচিটে ভাব রাখে না। বাংলাদেশের আবহাওয়া ও গরমের দিনে ব্যবহারের জন্য অত্যন্ত আরামদায়ক।",
+      "price": 1090,
+      "originalPrice": 1750,
+      "discountPercent": 38,
+      "saveAmount": 660,
+      "imageUrl": "/images/gold-collagen-cream.png",
+      "images": [
+        "/images/gold-collagen-cream.png",
+        "/images/gc-image.png",
+        "/images/gc-image2.png",
+        "/screenshots/1.jpeg",
+        "/screenshots/2.jpeg",
+        "/screenshots/3.jpeg"
+      ],
+      "videoUrl": "/videos/gc-cream-1.mp4",
+      "videos": [
+        "/videos/gc-cream-1.mp4",
+        "/videos/gc-cream-2.mp4"
+      ],
+      "stockStatus": "Very few units left at this price (হট প্রোডাক্ট - স্টক সীমিত)",
+      "isAuthentic": true,
+      "flashSaleEnds": "2026-06-30T23:59:59.000Z",
+      "ingredients": [
+        "Recombinant Collagen (রিকম্বিন্যান্ট কোলাজেন)",
+        "24K Pure Gold Particles (খাঁটি সক্রিয় সোনার কণা)",
+        "Tripeptide-1 (ট্রিপেপটাইড-১ অ্যান্টি-এজিং পেপটাইড)",
+        "Acetyl Hexapeptide-8 (অ্যাসিটাইল হেক্সাপেপটাইড-৮ / স্কিন ফার্মিং পেপটাইড)",
+        "Hyaluronic Acid (হায়ালুরোনিক অ্যাসিড)",
+        "Glycerol & Botanical Extracts (গ্লিসারিন ও ভেষজ নির্যাস)"
+      ],
+      "highlights": [
+        {
+          "title": "ট্রিপল অ্যান্টি-রিঙ্কেল পেপটাইড অ্যাকশন",
+          "description": "কোলাজেন, ট্রিপেপটাইড-১ এবং হেক্সাপেপটাইড-৮ ত্বকের বলিরেখা, চোখের পাশের ভাঁজ ও ঝুলে যাওয়া রোধ করে স্কিন টানটান করে।",
+          "imageUrl": "/images/benefit-1.png"
+        },
+        {
+          "title": "২৪ ক্যারেট খাঁটি সোনার গ্লো ও ব্রাইটনেস",
+          "description": "খাঁটি অ্যাক্টিভ গোল্ড পার্টিক্যালস ত্বকের গভীরে পুষ্টি জোগায়, কালচে দাগ দূর করে এবং ভেতর থেকে ব্রিলিয়ান্ট গ্লাস স্কিন গ্লো দেয়।",
+          "imageUrl": "/images/benefit-2.png"
+        },
+        {
+          "title": "ডিপ ময়েশ্চার ও সিল্কি নন-স্টিকি টেক্সচার",
+          "description": "হালকা ওয়াটার-ইনফিউজড ফর্মুলা মাত্র কয়েক সেকেন্ডে ত্বকে ব্লেন্ড হয়ে যায়। কোনো তৈলাক্ত বা আঠালো অনুভূতি হয় না।",
+          "imageUrl": "/images/benefit-3.png"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "gc-rev-1",
+          "rating": 5,
+          "comment": "ভিডিওটা দেখে অর্ডার করেছিলাম। ক্রিমটা হাতে পেয়ে সত্যিই মুগ্ধ! গোল্ড পার্টিকেলগুলো স্কিনে ব্লেন্ড হতেই অসম্ভব সুন্দর একটা উজ্জ্বলতা দেয়। কোনো চিটচিটে ভাব একদমই নেই। ১০/১০!",
+          "reviewer": "তানজিলা আক্তার",
+          "date": "5/18/2026"
+        },
+        {
+          "id": "gc-rev-2",
+          "rating": 5,
+          "comment": "আমার মুখের দুই পাশের ও কপালে বলিরেখা স্পষ্ট দেখা যেত। ২ সপ্তাহ প্রতিদিন রাতে এটা ব্যবহার করার পর স্কিন অনেক টানটান এবং নরম লাগছে। খাঁটি অরিজিনাল চাইনিজ প্রোডাক্ট পেয়েছি।",
+          "reviewer": "শারমিন ইসলাম",
+          "date": "5/15/2026"
+        },
+        {
+          "id": "gc-rev-3",
+          "rating": 5,
+          "comment": "প্যাকেজিং ও সিল নিখুঁত ছিল। ডেলিভারি মাত্র ২ দিনে পেয়েছি বনশ্রীতে। স্কিনে চমৎকার গ্লো এনে দিয়েছে। ersbeauty এর সার্ভিস সত্যিই অসাধারণ।",
+          "reviewer": "মাহমুদা বেগম",
+          "date": "5/12/2026"
+        },
+        {
+          "id": "gc-rev-4",
+          "rating": 5,
+          "comment": "Dr. Xiangmei গোল্ড কোলাজেন ক্রিমটি খুবই প্রিমিয়াম কোয়ালিটির। পেপটাইড আর সোনার কম্বিনেশনটা সত্যি ত্বককে অনেক তরুণ রাখে। দাম অনুযায়ী সেরা জিনিস।",
+          "reviewer": "কামরুন নাহার",
+          "date": "5/09/2026"
+        }
+      ]
+    },
+    {
       "id": "dr-yunmei-collagen-anti-wrinkle-cream",
       "slug": "dr-yunmei-collagen-anti-wrinkle-cream",
       "name": "Dr. Yunmei Gold Recombinant Collagen Anti-Wrinkle Cream (ডক্টর ইউনমেই গোল্ড রিকম্বিন্যান্ট কোলাজেন অ্যান্টি-রিঙ্কেল ক্রিম)",

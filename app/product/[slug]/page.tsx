@@ -58,9 +58,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Left Column: Image Showcase (lg:col-span-5) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             
-            {/* Client image gallery with all 5 pictures */}
+            {/* Client image gallery with pictures and videos */}
             <ImageGallery 
               images={product.images || [product.imageUrl]} 
+              videos={product.videos || (product.videoUrl ? [product.videoUrl] : [])}
               productName={product.name} 
               discountPercent={product.discountPercent} 
             />
@@ -110,7 +111,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   {product.brand}
                 </span>
                 <span className="text-xs font-extrabold text-gray-500 bg-gray-100/70 border border-gray-200/50 px-2.5 py-0.5 rounded-full">
-                  {product.slug === 'dr-yunmei-collagen-anti-wrinkle-cream' ? '50g' : product.slug === 'ersbeauty-collagen-eye-cream' ? '30g' : '40ml'}
+                  {product.slug === 'ersbeauty-collagen-eye-cream' ? '30g' : product.slug === 'ersbeauty-collagen-brightening-essence' ? '40ml' : '50g'}
                 </span>
                 
                 {/* Micro stars summary */}
@@ -157,6 +158,43 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
         </div>
+
+        {/* Video Demonstration Showcase if available */}
+        {product.videos && product.videos.length > 0 && (
+          <div className="mt-12 bg-gradient-to-br from-amber-50/70 via-pink-50/30 to-white rounded-3xl p-6 md:p-8 border border-amber-200/60 shadow-sm">
+            <div className="max-w-2xl mx-auto text-center mb-6">
+              <span className="text-[11px] font-black text-amber-800 bg-amber-100/90 border border-amber-200 px-3 py-1 rounded-full uppercase tracking-wider">
+                🎬 Live Video Demonstration
+              </span>
+              <h3 className="text-xl md:text-2xl font-black text-gray-900 mt-2.5">
+                আসল গোল্ড কোলাজেন ক্রিমের ভিডিও রিভিউ
+              </h3>
+              <p className="text-xs md:text-sm text-gray-600 font-semibold mt-1.5">
+                সোনার কণাযুক্ত রিচ ফর্মুলা এবং স্কিনে এর মসৃণ শোষণের বাস্তব দৃশ্য দেখুন।
+              </p>
+            </div>
+
+            <div className={`grid grid-cols-1 ${product.videos.length > 1 ? 'md:grid-cols-2' : 'max-w-md mx-auto'} gap-6`}>
+              {product.videos.map((vid, idx) => (
+                <div key={idx} className="bg-white rounded-2xl overflow-hidden border border-amber-100 shadow-md flex flex-col">
+                  <div className="aspect-[9/16] max-h-[480px] w-full bg-black flex items-center justify-center">
+                    <video
+                      src={vid}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="p-3.5 text-center bg-white border-t border-gray-100">
+                    <p className="text-xs font-black text-gray-800">ভিডিও {idx + 1}: গোল্ড কোলাজেন লাইভ ডেমো</p>
+                    <p className="text-[11px] text-gray-500 font-semibold mt-0.5">ersbeauty অথেনটিক স্কিনকেয়ার</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Tabs Detail Section */}
         <ProductTabs 
